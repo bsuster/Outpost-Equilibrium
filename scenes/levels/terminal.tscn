@@ -1,0 +1,90 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkscwnpo0mbfl"]
+
+[ext_resource type="Theme" uid="uid://di4e7tnr2a1hj" path="res://terminal_theme.tres" id="1_w35if"]
+[ext_resource type="Script" uid="uid://hm7rfmep5iuy" path="res://scenes/levels/terminal.gd" id="2_17c4d"]
+
+[node name="Terminal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_w35if")
+script = ExtResource("2_17c4d")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TerminalOutput" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "--- AVAILABLE COMMANDS ---------------------------------------------------
+generate_oxygen
+	- Increases Oxygen by 15%
+	- Consumes 10% Power
+
+grow_food
+	- Increases Food by 20%
+	- Consumes 5% Oxygen
+
+recharge_power [sunlight|no_sunlight]
+	- Increases Power by 20% if sunlight is available
+	- Fails if no_sunlight is specified or event prevents solar charging
+
+recycle_waste
+	- Increases Oxygen by 10% and Food by 10%
+	- Consumes 10% Power
+
+sleep
+	- Skip turn and randomly boost one system by 10%
+	- All other systems drain faster the following day
+
+status
+	- Displays current Oxygen, Power, and Food levels
+
+next
+	- Proceeds to the next cycle (only after performing an action)
+
+help
+	- Displays this help message
+
+quit
+	- Exit the terminal and abandon the mission
+
+--------------------------------------------------------------------------"
+scroll_following = true
+vertical_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = ">"
+
+[node name="TerminalInput" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_length = 110
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+flat = true
+caret_blink = true
+caret_force_displayed = true

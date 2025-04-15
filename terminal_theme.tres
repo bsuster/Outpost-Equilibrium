@@ -1,0 +1,14 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://di4e7tnr2a1hj"]
+
+[ext_resource type="FontFile" uid="uid://bv40slj05t5cv" path="res://fonts/whitrabt.ttf" id="1_75fg2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2euqn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_75fg2"]
+
+[resource]
+default_font = ExtResource("1_75fg2")
+LineEdit/colors/font_placeholder_color = Color(0.87451, 0.87451, 0.87451, 0.65098)
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_2euqn")
+LineEdit/styles/normal = SubResource("StyleBoxEmpty_75fg2")
+RichTextLabel/constants/line_separation = 4
