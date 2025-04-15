@@ -7,6 +7,7 @@ var is_printing: bool = false
 
 func _ready():
 	terminal_input.set_keep_editing_on_text_submit(true)
+	enable_input()
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
@@ -37,9 +38,9 @@ func submit_input():
 
 func print_terminal_output(output: String) -> void:
 	is_printing = true
-	var chars = output.split()
-	for char in chars:
-		terminal_output.text += char
+	var characters = output.split()
+	for character in characters:
+		terminal_output.text += character
 		await get_tree().create_timer(0.001).timeout
 	
 	is_printing = false

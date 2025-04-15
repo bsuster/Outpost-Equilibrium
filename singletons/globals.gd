@@ -9,7 +9,7 @@ func save_game():
 
 # If check_only is true it will only check for a valid save file and return true or false without
 # restoring any data
-func load_game(check_only=false):
+func load_game(_check_only=false):
 	pass
 
 

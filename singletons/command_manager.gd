@@ -24,7 +24,7 @@ func has_command(command) -> bool:
 
 func exec_command(command) -> String:
 	var command_dict = commands[command]
-	var is_success = true
+	var _is_success = true
 	if not command_dict.has_all(["success", "failure", "effects"]):
 		return command_dict["success"][0]
 	return ""
