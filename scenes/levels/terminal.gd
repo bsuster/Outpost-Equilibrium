@@ -1,5 +1,7 @@
 extends Control
 
+signal printing_done
+
 @onready var terminal_input: LineEdit = %TerminalInput
 @onready var terminal_output: RichTextLabel = %TerminalOutput
 
