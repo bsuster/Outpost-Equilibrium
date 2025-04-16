@@ -13,7 +13,9 @@ config_version=5
 config/name="Outpost: Equilibrium"
 run/main_scene="uid://bkscwnpo0mbfl"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.0588235, 0.0901961, 0.137255, 1)
+boot_splash/image="uid://s2kt42wluvps"
+config/icon="uid://s2kt42wluvps"
 
 [autoload]
 

@@ -43,6 +43,6 @@ func print_terminal_output(output: String) -> void:
 	var characters = output.split()
 	for character in characters:
 		terminal_output.text += character
-		await get_tree().create_timer(0.001).timeout
+		await get_tree().create_timer(0.0001).timeout
 	
 	is_printing = false
