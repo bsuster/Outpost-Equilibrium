@@ -1,5 +1,7 @@
 extends Control
 
+class_name Terminal
+
 signal printing_done
 
 @onready var terminal_input: LineEdit = %TerminalInput
@@ -46,3 +48,4 @@ func print_terminal_output(output: String) -> void:
 		await get_tree().create_timer(0.0001).timeout
 	
 	is_printing = false
+	printing_done.emit()

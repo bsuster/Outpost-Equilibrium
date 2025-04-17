@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://i0760vxk077j"]
+
+[ext_resource type="PackedScene" uid="uid://bkscwnpo0mbfl" path="res://scenes/characters/terminal.tscn" id="1_6312j"]
+[ext_resource type="Script" uid="uid://o7fjx4uyj3nv" path="res://scenes/misc/introduction.gd" id="2_ybdc1"]
+
+[node name="MainScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Terminal" parent="." instance=ExtResource("1_6312j")]
+layout_mode = 1
+
+[node name="Introduction" type="Node" parent="."]
+script = ExtResource("2_ybdc1")

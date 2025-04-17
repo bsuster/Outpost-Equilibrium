@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bkscwnpo0mbfl"]
 
 [ext_resource type="Theme" uid="uid://di4e7tnr2a1hj" path="res://terminal_theme.tres" id="1_w35if"]
-[ext_resource type="Script" uid="uid://hm7rfmep5iuy" path="res://scenes/levels/terminal.gd" id="2_17c4d"]
+[ext_resource type="Script" uid="uid://hm7rfmep5iuy" path="res://scenes/characters/terminal.gd" id="2_17c4d"]
 
 [node name="Terminal" type="Control"]
 layout_mode = 3
@@ -32,40 +32,6 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-text = "--- AVAILABLE COMMANDS ---------------------------------------------------
-generate_oxygen
-	- Increases Oxygen by 15%
-	- Consumes 10% Power
-
-grow_food
-	- Increases Food by 20%
-	- Consumes 5% Oxygen
-
-recharge_power [sunlight|no_sunlight]
-	- Increases Power by 20% if sunlight is available
-	- Fails if no_sunlight is specified or event prevents solar charging
-
-recycle_waste
-	- Increases Oxygen by 10% and Food by 10%
-	- Consumes 10% Power
-
-sleep
-	- Skip turn and randomly boost one system by 10%
-	- All other systems drain faster the following day
-
-status
-	- Displays current Oxygen, Power, and Food levels
-
-next
-	- Proceeds to the next cycle (only after performing an action)
-
-help
-	- Displays this help message
-
-quit
-	- Exit the terminal and abandon the mission
-
---------------------------------------------------------------------------"
 scroll_following = true
 vertical_alignment = 2
 
@@ -81,6 +47,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 max_length = 110
+editable = false
 emoji_menu_enabled = false
 shortcut_keys_enabled = false
 middle_mouse_paste_enabled = false
