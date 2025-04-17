@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://i0760vxk077j"]
+[gd_scene load_steps=7 format=3 uid="uid://i0760vxk077j"]
 
+[ext_resource type="Script" uid="uid://dl8v3fxn64o3r" path="res://scenes/levels/main_scene.gd" id="1_3ulyp"]
 [ext_resource type="PackedScene" uid="uid://bkscwnpo0mbfl" path="res://scenes/characters/terminal.tscn" id="1_6312j"]
+[ext_resource type="AudioStream" uid="uid://bfbxfdxcauk6a" path="res://music/ambient-soundscapes-001-space-atmosphere-303246.mp3" id="2_fiowe"]
 [ext_resource type="Script" uid="uid://o7fjx4uyj3nv" path="res://scenes/misc/introduction.gd" id="2_ybdc1"]
+[ext_resource type="AudioStream" uid="uid://wfph64bkro7b" path="res://music/ambient-soundscapes-007-space-atmosphere-304974.mp3" id="3_quawd"]
+[ext_resource type="AudioStream" uid="uid://3ru03p2665om" path="res://music/space-ambience-56265.mp3" id="4_brv2t"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -10,9 +14,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_3ulyp")
+background_songs = Array[AudioStream]([ExtResource("2_fiowe"), ExtResource("3_quawd"), ExtResource("4_brv2t")])
 
 [node name="Terminal" parent="." instance=ExtResource("1_6312j")]
 layout_mode = 1
 
 [node name="Introduction" type="Node" parent="."]
 script = ExtResource("2_ybdc1")
+
+[node name="BackgroundPlayer" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="finished" from="BackgroundPlayer" to="." method="_on_background_player_finished"]

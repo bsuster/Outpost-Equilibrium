@@ -6,12 +6,13 @@ signal printing_done
 
 @onready var terminal_input: LineEdit = %TerminalInput
 @onready var terminal_output: RichTextLabel = %TerminalOutput
+@onready var type_audio_player: AudioStreamPlayer2D = $AudioPlayer_Typing
 
 var is_printing: bool = false
 
 func _ready():
 	terminal_input.set_keep_editing_on_text_submit(true)
-	enable_input()
+	#enable_input()
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
@@ -22,7 +23,7 @@ func disable_input() -> void:
 
 func enable_input() -> void:
 	terminal_input.editable = true
-	terminal_input.set_keep_editing_on_text_submit(true)
+	#terminal_input.set_keep_editing_on_text_submit(true)
 	terminal_input.grab_focus.call_deferred()
 
 func submit_input():
@@ -45,6 +46,7 @@ func print_terminal_output(output: String) -> void:
 	var characters = output.split()
 	for character in characters:
 		terminal_output.text += character
+		type_audio_player.play(0.09)
 		await get_tree().create_timer(0.0001).timeout
 	
 	is_printing = false

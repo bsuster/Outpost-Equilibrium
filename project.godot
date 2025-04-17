@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Outpost: Equilibrium"
-run/main_scene="uid://bkscwnpo0mbfl"
+run/main_scene="uid://i0760vxk077j"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/bg_color=Color(0.0588235, 0.0901961, 0.137255, 1)
 boot_splash/image="uid://s2kt42wluvps"
@@ -22,6 +22,12 @@ config/icon="uid://s2kt42wluvps"
 Globals="*res://singletons/globals.gd"
 CommandManager="*res://singletons/command_manager.gd"
 EventManager="*res://singletons/event_manager.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=3
 
 [rendering]
 

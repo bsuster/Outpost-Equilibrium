@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkscwnpo0mbfl"]
+[gd_scene load_steps=4 format=3 uid="uid://bkscwnpo0mbfl"]
 
 [ext_resource type="Theme" uid="uid://di4e7tnr2a1hj" path="res://terminal_theme.tres" id="1_w35if"]
 [ext_resource type="Script" uid="uid://hm7rfmep5iuy" path="res://scenes/characters/terminal.gd" id="2_17c4d"]
+[ext_resource type="AudioStream" uid="uid://cinscncyvwdrp" path="res://sounds/button-202966.mp3" id="3_0td1w"]
 
 [node name="Terminal" type="Control"]
 layout_mode = 3
@@ -55,3 +56,8 @@ selecting_enabled = false
 flat = true
 caret_blink = true
 caret_force_displayed = true
+
+[node name="AudioPlayer_Typing" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_0td1w")
+volume_db = -12.0
+pitch_scale = 0.8

@@ -22,4 +22,3 @@ func get_random_event() -> Event:
 		return null
 	
 	return events.pick_random()
-	return
