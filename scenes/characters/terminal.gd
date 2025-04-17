@@ -9,10 +9,12 @@ signal printing_done
 @onready var type_audio_player: AudioStreamPlayer2D = $AudioPlayer_Typing
 
 var is_printing: bool = false
+var previous_command: String = ""
 
 func _ready():
 	terminal_input.set_keep_editing_on_text_submit(true)
-	#enable_input()
+	if get_tree().current_scene == self:
+		enable_input()
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
@@ -30,24 +32,38 @@ func submit_input():
 	if is_printing:
 		return
 	var command = terminal_input.text
+	var regex = RegEx.new()
+	regex.compile("\\[.*?\\]")
+	command = regex.sub(command, "", true).to_lower()
 	terminal_input.clear()
 	
 	var command_arr = command.split(" ")
 	var command_text = "> " + command
+	print_terminal_output(command_text)
+	await printing_done
 	if not CommandManager.has_command(command):
 		return
 	
 	var command_output = CommandManager.exec_command(command_arr[0])
 	
-	print_terminal_output( "\n\n" + command_text + "\n\n" + command_output)
+	print_terminal_output(command_output)
 
 func print_terminal_output(output: String) -> void:
 	is_printing = true
+	var typing_pitch_range = range(7, 8, 1)
 	var characters = output.split()
 	for character in characters:
-		terminal_output.text += character
-		type_audio_player.play(0.09)
+		if character == "\n":
+			randomize()
+			var new_pitch_scale = typing_pitch_range.pick_random() / 10.0
+			type_audio_player.pitch_scale = new_pitch_scale
+		_print_character(character)
 		await get_tree().create_timer(0.0001).timeout
 	
+	_print_character("\n")
 	is_printing = false
 	printing_done.emit()
+
+func _print_character(character: String) -> void:
+	terminal_output.text += character
+	type_audio_player.play(0.09)

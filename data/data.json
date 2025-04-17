@@ -2,47 +2,62 @@
 	"commands": {
 		"stabilize_air": {
 			"success": [
-				"Air scrubbers hum to life. Colonists breathe easier.",
-				"Atmospheric systems stabilized. Breathing quality improved."
+				"Air scrubbers hum to life. Colonists breathe easier.\n[color=green][+15 Oxygen][/color]\n[color=red][-10 Power][/color]",
+				"Atmospheric systems stabilized. Breathing quality improved.\n[color=green][+15 Oxygen][/color]\n[color=red][-10 Power][/color]"
 			],
 			"failure": [
 				"Scrubbers failed to initialize. Manual override required."
 				],
 			"effects": {
-				"atmosphere": 15,
+				"oxygen": 15,
 				"power": -10
 			}
 		},
 		"cultivate_crops": {
 			"success": [
-				"Hydroponic trays activated. Crops begin to flourish.",
-				"Greenhouse systems rerouted. Food production initiated."
+				"Hydroponic trays activated. Crops begin to flourish.\n[color=green][+20 Food][/color]\n[color=red][-5 Oxygen][/color]",
+				"Greenhouse systems rerouted. Food production initiated.\n[color=green][+20 Food][/color]\n[color=red][-5 Oxygen][/color]"
 			],
 			"failure": [
 				"The crops have been infected by unkown contageon"
 			],
 			"effects": {
 				"food": 20,
-				"atmosphere": -5
+				"oxygen": -5
 			}
+		},
+		"exit": {
+			"success": [
+				"Are you sure you wish to abandon your post?\n[color=red][YES][/color] or [color=green][NO][/color]"
+			]
+		},
+		"yes": {
+			"success": [
+				""
+			]
+		},
+		"no": {
+			"success": [
+				""
+			]
 		},
 		"help": {
 			"success": [
 				"--- AVAILABLE COMMANDS ---------------------------------------------------
-generate_oxygen
-	- Increases Oxygen by 15%
+stabilize_air
+	- Increases Atmosphere by 15%
 	- Consumes 10% Power
 
-grow_food
+cultivate_crops
 	- Increases Food by 20%
-	- Consumes 5% Oxygen
+	- Consumes 5% Atmosphere
 
 recharge_power [sunlight|no_sunlight]
 	- Increases Power by 20% if sunlight is available
 	- Fails if no_sunlight is specified or event prevents solar charging
 
 recycle_waste
-	- Increases Oxygen by 10% and Food by 10%
+	- Increases Atmosphere by 10% and Food by 10%
 	- Consumes 10% Power
 
 sleep
@@ -76,11 +91,11 @@ quit
 	"warnings": {
 		"low_power": ">> CRITICAL: Power Grid is dangerously low. Life support at risk.",
 		"low_food": ">> WARNING: Food Stores depleted. Colonists are starving.",
-		"low_atmosphere": ">> ALERT: Air quality is poor. Oxygen tanks depleted."
+		"low_oxygen": ">> ALERT: Air quality is poor. Oxygen tanks depleted."
 	},
 	"game_over": {
 		"power": ">> SYSTEM FAILURE: Power Grid collapsed. Life support offline.",
-		"atmosphere": ">> COLONY FAILURE: Oxygen supply exhausted.",
+		"oxygen": ">> COLONY FAILURE: Oxygen supply exhausted.",
 		"food": ">> POPULATION FAILURE: All food reserves lost. Colonists perished."
 	}
 }
