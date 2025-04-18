@@ -7,28 +7,23 @@ var description: String
 var effects := {}
 var success_text := [] # Array of success messages
 var failure_text := [] # Array of fail messages
-var condition_func: Callable # Optional function reference to check usage
+var condition: Callable # Optional function reference to check usage
 
 func _init(t: String, command_dict: Dictionary):
 	title = t
-	if command_dict.has("description"):
-		description = command_dict.description
-	if command_dict.has("effects"):
-		effects = command_dict.effects
-	if command_dict.has("success_text"):
-		success_text = command_dict.success_text
-	if command_dict.has("failure_text"):
-		failure_text = command_dict.failure_text
-	if command_dict.has("condition"):
-		condition_func = ConditionManager.get_callable_by_name(command_dict.condition)
+	for prop in command_dict:
+		set(prop, command_dict[prop])
+	if command_dict.has("condition") and command_dict.condition != null:
+		condition = ConditionManager.get_callable_by_name(command_dict.condition)
 
 func can_run() -> bool:
-	return condition_func.is_null() or condition_func.call()
+	return condition.is_null() or condition.call()
 
 func run() -> String:
 	if not effects.is_empty():
 		for effect in effects:
 			SystemManager.apply_effect(effect, effects[effect])
+		SystemManager.toggle_can_advance_day()
 	
 	return get_success_text()
 

@@ -39,7 +39,7 @@ func submit_input():
 	terminal_input.clear()
 	
 	var command_arr = command.split(" ")
-	var command_text = "> " + command
+	var command_text = "\n> " + command + "\n"
 	print_terminal_output(command_text)
 	await printing_done
 	
@@ -47,6 +47,8 @@ func submit_input():
 	if command_output == "":
 		return
 	
+	if is_printing:
+		await printing_done
 	print_terminal_output(command_output)
 
 func print_terminal_output(output: String) -> void:

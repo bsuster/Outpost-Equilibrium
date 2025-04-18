@@ -1,5 +1,6 @@
 extends Node
 
+signal command_completed
 
 var commands: Dictionary
 var commands2: Dictionary
@@ -25,6 +26,9 @@ func exec_command(command_title) -> String:
 		return ""
 	var command: Command = commands2[command_title]
 	
+	if command_title == "status":
+		return run_status_command()
+	
 	if command.can_run():
 		if previous_command == "exit":
 			if command_title == "yes":
@@ -39,26 +43,15 @@ func exec_command(command_title) -> String:
 	previous_command = command_title
 	return command.get_failure_text()
 
-#func exec_command(command) -> String:
-	#var command_dict = commands[command]
-	#if previous_command == "exit":
-		#if command == "yes":
-			#get_tree().quit()
-		#elif command == "no":
-			#previous_command = ""
-			#return ""
-		#else:
-			#return ""
-	#if not command_dict.has_all(["success_text", "failure_text", "effects"]):
-		#previous_command = command
-		#return command_dict["success_text"][0]
-	
-	#randomize()
-	#var is_success = randi_range(0,10) <= 7
-	#if is_success:
-		#previous_command = command
-		#return command_dict["success_text"].pick_random()
-	#
-	#previous_command = command
-	#return command_dict["failure_text"].pick_random()
-	
+func run_status_command() -> String:
+	var status_text: String= ""
+	status_text += "\n==============================\n"
+	status_text += " OUTPOST SYSTEM STATUS REPORT "
+	status_text += "\n==============================\n\n"
+	for resource in ["power", "oxygen", "food"]:
+		var value = SystemManager.get(resource)
+		var label = resource.to_upper() + ""
+		#var warning = get_status_warning(value)
+		status_text += label + ": " + str(value) + "%\n"# + warning
+	status_text += "\n==============================\n"
+	return status_text

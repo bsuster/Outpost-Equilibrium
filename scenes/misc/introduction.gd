@@ -64,12 +64,15 @@ func _show_intro() -> void:
 		terminal.print_terminal_output(line)
 		await terminal.printing_done
 		if is_intro_canceled:
-			intro_done.emit()
-			queue_free.call_deferred()
+			finish_intro()
 			return
 		timer.start(2)
 		await timer.timeout
 	
+	finish_intro()
+
+func finish_intro():
+	terminal.enable_input()
 	intro_done.emit()
 	queue_free.call_deferred()
 	

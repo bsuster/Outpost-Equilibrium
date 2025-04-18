@@ -1,5 +1,35 @@
 {
 	"commands": {
+		"status": {
+			"description": "Displays the current status of all primary systems and environmental conditions.",
+			"success_text": [
+				"Colony system status report generated."
+			],
+			"failure_text": [
+				"Unable to retrieve system status. Core telemetry offline."
+			],
+			"effects": {},
+			"condition": null,
+		},
+		"next": {
+			"description": "Advances time by one day. All systems consume resources based on base depletion rates and environmental effects.",
+			"success_text": [
+				"Day advanced. Systems report nominal.",
+				"Another day passes in silence.",
+				"Time moves forward, whether you're ready or not..."
+			],
+			"failure_text": [
+				"Time cannot progress until all critical systems are stabilized.",
+				"Warning: A system failure is imminent. Day cannot advance safely."
+			],
+			"effects": {
+				"power": -15,
+				"oxygen": -10,
+				"food": -5,
+				"day": 1
+			},
+			"condition": "can_advance_day"
+		},
 		"stabilize_air": {
 			"description": "Purges toxins and recycles breathable air to maintain colony atmosphere.",
 			"success_text": [
@@ -48,19 +78,19 @@
 			"success_text": [
 				"Are you sure you wish to abandon your post?\n[color=red][YES][/color] or [color=green][NO][/color]"
 			],
-			"condition": "",
+			"condition": null,
 		},
 		"yes": {
 			"success_text": [
 				""
 			],
-			"condition": "",
+			"condition": null,
 		},
 		"no": {
 			"success_text": [
 				""
 			],
-			"condition": "",
+			"condition": null,
 		},
 		"help": {
 			"success_text": [
@@ -99,7 +129,7 @@ quit
 
 --------------------------------------------------------------------------"
 			],
-			"condition": "",
+			"condition": null,
 		}
 	},
 	"events": {
