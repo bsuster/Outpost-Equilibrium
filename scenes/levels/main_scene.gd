@@ -24,16 +24,15 @@ func _on_background_player_finished() -> void:
 	_play_next_song()
 
 func _next_day() -> void:
-	await get_tree().create_timer(1).timeout
-	#terminal.disable_input()
+	await get_tree().create_timer(2).timeout
+	EventManager.refresh_active_events()
 	if terminal.is_printing:
 		await terminal.printing_done
 	var day_string = "\nDay: %s" % [SystemManager.day]
 	terminal.print_terminal_output(day_string)
 	await terminal.printing_done
-	terminal.print_terminal_output(CommandManager.run_status_command())
+	terminal.print_terminal_output(CommandManager.get_status_message())
 	await terminal.printing_done
-	#terminal.enable_input()
 
 func _on_intro_done():
 	_next_day()

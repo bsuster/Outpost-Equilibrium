@@ -72,72 +72,38 @@
 			"effects": {
 				"power": 20
 			},
-			"condition": "no_dust_storm",
+			"condition": "deploy_panels_enabled",
 		},
 		"exit": {
+			"description": "Abandon your post and commit yourself and all those aboard your station to the void.",
 			"success_text": [
 				"Are you sure you wish to abandon your post?\n[color=red][YES][/color] or [color=green][NO][/color]"
 			],
 			"condition": null,
 		},
 		"yes": {
-			"success_text": [
-				""
-			],
+			"description": "exclude",
+			"success_text": [""],
 			"condition": null,
 		},
 		"no": {
-			"success_text": [
-				""
-			],
+			"description": "exclude",
+			"success_text": [""],
 			"condition": null,
 		},
 		"help": {
-			"success_text": [
-				"--- AVAILABLE COMMANDS ---------------------------------------------------
-stabilize_air
-	- Increases Atmosphere by 15%
-	- Consumes 10% Power
-
-cultivate_crops
-	- Increases Food by 20%
-	- Consumes 5% Atmosphere
-
-recharge_power [sunlight|no_sunlight]
-	- Increases Power by 20% if sunlight is available
-	- Fails if no_sunlight is specified or event prevents solar charging
-
-recycle_waste
-	- Increases Atmosphere by 10% and Food by 10%
-	- Consumes 10% Power
-
-sleep
-	- Skip turn and randomly boost one system by 10%
-	- All other systems drain faster the following day
-
-status
-	- Displays current Oxygen, Power, and Food levels
-
-next
-	- Proceeds to the next cycle (only after performing an action)
-
-help
-	- Displays this help message
-
-quit
-	- Exit the terminal and abandon the mission
-
---------------------------------------------------------------------------"
-			],
+			"description": "Display this help message.",
+			"success_text": [""],
 			"condition": null,
 		}
 	},
 	"events": {
 		"dust_storm": {
 			"description": "Solar Dust Storm detected. Solar panels offline.",
-			"modifiers": {
-				"deploy_panels": "disabled"
-			}
+			"effects": {
+				"deploy_panels_disabled": "Solar panels are unable to be deployed.",
+			},
+			"duration": 2
 		}
 	},
 	"warnings": {

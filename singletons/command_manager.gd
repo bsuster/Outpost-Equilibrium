@@ -1,9 +1,6 @@
 extends Node
 
-signal command_completed
-
 var commands: Dictionary
-var commands2: Dictionary
 
 var previous_command: String = ""
 
@@ -14,20 +11,22 @@ func _restore_data():
 	commands = Globals.base_game_data["commands"]
 	for command in commands:
 		var new_command = Command.new(command, commands[command])
-		commands2[command] = new_command
+		if command == "help":
+			new_command.success_text.append(get_help_message())
+		commands[command] = new_command
 
 func has_command(command: String) -> bool:
 	return commands.has(command)
 
 func exec_command(command_title) -> String:
-	if not commands2.has(command_title):
+	if not commands.has(command_title):
 		if previous_command == "exit":
-			return commands2["exit"].run()
+			return commands["exit"].run()
 		return ""
-	var command: Command = commands2[command_title]
+	var command: Command = commands[command_title]
 	
 	if command_title == "status":
-		return run_status_command()
+		return get_status_message()
 	
 	if command.can_run():
 		if previous_command == "exit":
@@ -36,22 +35,54 @@ func exec_command(command_title) -> String:
 			elif command_title == "no":
 				previous_command = ""
 			else:
-				return commands2["exit"].run()
+				return commands["exit"].run()
 		else:
 			previous_command = command_title
 		return command.run()
 	previous_command = command_title
 	return command.get_failure_text()
 
-func run_status_command() -> String:
-	var status_text: String= ""
-	status_text += "\n==============================\n"
-	status_text += " OUTPOST SYSTEM STATUS REPORT "
-	status_text += "\n==============================\n\n"
+func get_status_message() -> String:
+	var output := []
+	output.append("==============================")
+	output.append(" OUTPOST SYSTEM STATUS REPORT ")
+	output.append("==============================")
 	for resource in ["power", "oxygen", "food"]:
 		var value = SystemManager.get(resource)
 		var label = resource.to_upper() + ""
 		#var warning = get_status_warning(value)
-		status_text += label + ": " + str(value) + "%\n"# + warning
-	status_text += "\n==============================\n"
-	return status_text
+		output.append(label + ": " + str(value) + "%")
+	output.append("==============================")
+	
+	if EventManager.active_events.is_empty():
+		output.append(" NO ACTIVE EVENTS")
+	else:
+		for event in EventManager.active_events:
+			output.append(" ACTIVE EVENTS:")
+			output.append("- " + event.title + ": " + event.description)
+			if not event.effects.is_empty():
+				output.append("    Effects")
+				for effect in event.effects:
+					output.append("       %s" % event.effects[effect])
+		
+	output.append("==============================")
+	
+	return "\n".join(output)
+
+func get_help_message() -> String:
+	var commands: Dictionary = Globals.base_game_data["commands"]
+	var output := []
+	output.append("=========================")
+	output.append(" AVAILABLE TERMINAL COMMANDS")
+	output.append("=========================")
+	
+	var sorted_keys := commands.keys()
+	sorted_keys.sort()
+	
+	for cmd in sorted_keys:
+		var desc = commands[cmd].get("description")
+		if desc != "exclude":
+			output.append("- " + cmd + ": " + desc)
+	
+	output.append("=========================")
+	return "\n".join(output)

@@ -8,11 +8,8 @@ func get_callable_by_name(callable_name: String) -> Callable:
 func has_min_power_10() -> bool:
 	return SystemManager.power >= 10 and not SystemManager.can_advance_day
 
-func no_dust_storm():
-	for event in EventManager.active_events:
-		if event.title == "dust_storm":
-			return false
-	return true
+func deploy_panels_enabled():
+	return not SystemManager.deploy_panels_disabled
 
 func has_min_air_5():
 	return SystemManager.oxygen >= 5 and not SystemManager.can_advance_day
