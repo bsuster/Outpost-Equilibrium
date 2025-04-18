@@ -28,6 +28,8 @@ func _next_day() -> void:
 	EventManager.refresh_active_events()
 	if terminal.is_printing:
 		await terminal.printing_done
+	if SystemManager.is_game_over:
+		print("game over")
 	var day_string = "\nDay: %s" % [SystemManager.day]
 	terminal.print_terminal_output(day_string)
 	await terminal.printing_done

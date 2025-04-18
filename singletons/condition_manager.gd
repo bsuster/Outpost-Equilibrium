@@ -16,3 +16,6 @@ func has_min_air_5():
 
 func can_advance_day():
 	return SystemManager.can_advance_day
+
+func can_skip():
+	return not SystemManager.can_advance_day

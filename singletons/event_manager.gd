@@ -4,6 +4,19 @@ var events: Array[Event]
 
 var active_events: Array[Event]
 
+var available_events: Array[Event]:
+	get:
+		var output: Array[Event]
+		for event in events:
+			var is_event_active: bool = false
+			for active_event in active_events:
+				if active_event.title == event.title:
+					is_event_active = true
+					break
+			if not is_event_active:
+				output.append(event)
+		return output
+
 func _init() -> void:
 	_restore_data()
 
@@ -22,8 +35,7 @@ func refresh_active_events():
 	
 	randomize()
 	while randi_range(1, 10) == 10:
-	#for event in events:
-		var new_event: Event = events.pick_random().clone()
+		var new_event: Event = available_events.pick_random().clone()
 		var is_event_active: bool = false
 		for active_event in active_events:
 			if active_event.title == new_event.title:
