@@ -20,10 +20,10 @@ config/icon="uid://s2kt42wluvps"
 [autoload]
 
 Globals="*res://singletons/globals.gd"
-CommandManager="*res://singletons/command_manager.gd"
+SystemManager="*res://singletons/system_manager.gd"
 EventManager="*res://singletons/event_manager.gd"
-Conditions="*res://singletons/conditions.gd"
-ConditionFunction="*res://singletons/condition_function.gd"
+ConditionManager="*res://singletons/condition_manager.gd"
+CommandManager="*res://singletons/command_manager.gd"
 
 [display]
 

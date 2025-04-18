@@ -2,6 +2,8 @@ extends Node
 
 var events: Array
 
+var active_events: Array[Event]
+
 func _init() -> void:
 	_restore_data()
 

@@ -47,17 +47,20 @@
 		"exit": {
 			"success_text": [
 				"Are you sure you wish to abandon your post?\n[color=red][YES][/color] or [color=green][NO][/color]"
-			]
+			],
+			"condition": "",
 		},
 		"yes": {
 			"success_text": [
 				""
-			]
+			],
+			"condition": "",
 		},
 		"no": {
 			"success_text": [
 				""
-			]
+			],
+			"condition": "",
 		},
 		"help": {
 			"success_text": [
@@ -95,7 +98,8 @@ quit
 	- Exit the terminal and abandon the mission
 
 --------------------------------------------------------------------------"
-			]
+			],
+			"condition": "",
 		}
 	},
 	"events": {

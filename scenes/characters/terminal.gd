@@ -42,10 +42,10 @@ func submit_input():
 	var command_text = "> " + command
 	print_terminal_output(command_text)
 	await printing_done
-	if not CommandManager.has_command(command):
-		return
 	
 	var command_output = CommandManager.exec_command(command_arr[0])
+	if command_output == "":
+		return
 	
 	print_terminal_output(command_output)
 
