@@ -10,6 +10,7 @@ signal printing_done
 
 var is_printing: bool = false
 var previous_command: String = ""
+var is_printer_override: bool = false
 
 func _ready():
 	terminal_input.set_keep_editing_on_text_submit(true)
@@ -17,7 +18,7 @@ func _ready():
 		enable_input()
 
 func _input(event):
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("submit_input"):
 		submit_input()
 
 func disable_input() -> void:
@@ -31,7 +32,7 @@ func enable_input() -> void:
 func submit_input():
 	if is_printing:
 		return
-	var command = terminal_input.text
+	var command = terminal_input.text.strip_edges()
 	var regex = RegEx.new()
 	regex.compile("\\[.*?\\]")
 	command = regex.sub(command, "", true).to_lower()
@@ -58,6 +59,12 @@ func print_terminal_output(output: String) -> void:
 			var new_pitch_scale = typing_pitch_range.pick_random() / 10.0
 			type_audio_player.pitch_scale = new_pitch_scale
 		_print_character(character)
+		if is_printer_override:
+			is_printer_override = false
+			_print_character("\n")
+			is_printing = false
+			printing_done.emit()
+			return
 		await get_tree().create_timer(0.0001).timeout
 	
 	_print_character("\n")
@@ -67,3 +74,6 @@ func print_terminal_output(output: String) -> void:
 func _print_character(character: String) -> void:
 	terminal_output.text += character
 	type_audio_player.play(0.09)
+
+func force_print_stop() -> void:
+	is_printer_override = true

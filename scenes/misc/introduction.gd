@@ -1,13 +1,16 @@
-extends Node
+extends Node2D
+
+signal intro_done
 
 @onready var terminal: Terminal = $"../Terminal"
+@onready var timer: Timer = $SpacingTimer
 
 var intro_text_blocks: Array[String] = [
 	"[BOOTING TERMINAL INTERFACE…]",
 	"\n[LOADING COLONY MANAGEMENT SYSTEM v3.42]",
 	"\n[USER IDENTIFIED: SYSTEMS OPERATOR - \"COMMANDER\"]",
 	"\n[STATUS: CRITICAL | CONNECTION: LOST]\n────────────────────────────────────────────────────────",
-	"\n\n>> YEAR: 2187  
+	"\n\n> YEAR: 2187  
 >> LOCATION: OUTPOST EOS — Epsilon Eridani b  
 >> DISTANCE TO EARTH: 10.5 light years",
 	"\n\n> Log Entry 0001:
@@ -47,12 +50,32 @@ var intro_text_blocks: Array[String] = [
 > GOOD LUCK, COMMANDER."
 ]
 
+var is_intro_canceled: bool = false
+
 func _ready():
+	_show_intro()
+	#await get_tree().create_timer(2).timeout
+	#$Label.visible = true
+	#$AnimationPlayer.play("skip_pulse")
+
+func _show_intro() -> void:
 	terminal.disable_input()
 	for line in intro_text_blocks:
 		terminal.print_terminal_output(line)
 		await terminal.printing_done
-		await get_tree().create_timer(2).timeout
+		if is_intro_canceled:
+			intro_done.emit()
+			queue_free.call_deferred()
+			return
+		timer.start(2)
+		await timer.timeout
 	
-	terminal.enable_input()
+	intro_done.emit()
 	queue_free.call_deferred()
+	
+
+func _input(event):
+	if event.is_action_pressed("skip"):
+		timer.timeout.emit()
+		is_intro_canceled = true
+		terminal.force_print_stop()

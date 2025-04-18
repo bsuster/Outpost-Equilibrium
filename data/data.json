@@ -1,48 +1,66 @@
 {
 	"commands": {
 		"stabilize_air": {
-			"success": [
+			"description": "Purges toxins and recycles breathable air to maintain colony atmosphere.",
+			"success_text": [
 				"Air scrubbers hum to life. Colonists breathe easier.\n[color=green][+15 Oxygen][/color]\n[color=red][-10 Power][/color]",
 				"Atmospheric systems stabilized. Breathing quality improved.\n[color=green][+15 Oxygen][/color]\n[color=red][-10 Power][/color]"
 			],
-			"failure": [
+			"failure_text": [
 				"Scrubbers failed to initialize. Manual override required."
 				],
 			"effects": {
 				"oxygen": 15,
 				"power": -10
-			}
+			},
+			"condition": "has_min_power_10"
 		},
 		"cultivate_crops": {
-			"success": [
+			"description": "Routes CO2 into hydroponic systems to grow food.",
+			"success_text": [
 				"Hydroponic trays activated. Crops begin to flourish.\n[color=green][+20 Food][/color]\n[color=red][-5 Oxygen][/color]",
 				"Greenhouse systems rerouted. Food production initiated.\n[color=green][+20 Food][/color]\n[color=red][-5 Oxygen][/color]"
 			],
-			"failure": [
+			"failure_text": [
 				"The crops have been infected by unkown contageon"
 			],
 			"effects": {
 				"food": 20,
 				"oxygen": -5
-			}
+			},
+			"condition": "has_min_air_5"
+		},
+		"deploy_panels": {
+			"description": "Extends solar panels to generate power. Ineffective during dust storms.",
+			"success_text": [
+				"Panels deployed. Power flowing to the grid.[color=green][+20 Power][/color]",
+				"Solar collectors fully extended. Energy levels rising.[color=green][+20 Power][/color]"
+			],
+			"failure_text": [
+				"Dust storm interference. No sunlight. Panels remain offline."
+			],
+			"effects": {
+				"power": 20
+			},
+			"condition": "no_dust_storm",
 		},
 		"exit": {
-			"success": [
+			"success_text": [
 				"Are you sure you wish to abandon your post?\n[color=red][YES][/color] or [color=green][NO][/color]"
 			]
 		},
 		"yes": {
-			"success": [
+			"success_text": [
 				""
 			]
 		},
 		"no": {
-			"success": [
+			"success_text": [
 				""
 			]
 		},
 		"help": {
-			"success": [
+			"success_text": [
 				"--- AVAILABLE COMMANDS ---------------------------------------------------
 stabilize_air
 	- Increases Atmosphere by 15%

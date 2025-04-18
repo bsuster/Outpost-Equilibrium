@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://i0760vxk077j"]
+[gd_scene load_steps=9 format=3 uid="uid://i0760vxk077j"]
 
 [ext_resource type="Script" uid="uid://dl8v3fxn64o3r" path="res://scenes/levels/main_scene.gd" id="1_3ulyp"]
 [ext_resource type="PackedScene" uid="uid://bkscwnpo0mbfl" path="res://scenes/characters/terminal.tscn" id="1_6312j"]
@@ -6,6 +6,28 @@
 [ext_resource type="Script" uid="uid://o7fjx4uyj3nv" path="res://scenes/misc/introduction.gd" id="2_ybdc1"]
 [ext_resource type="AudioStream" uid="uid://wfph64bkro7b" path="res://music/ambient-soundscapes-007-space-atmosphere-304974.mp3" id="3_quawd"]
 [ext_resource type="AudioStream" uid="uid://3ru03p2665om" path="res://music/space-ambience-56265.mp3" id="4_brv2t"]
+
+[sub_resource type="Animation" id="Animation_fiowe"]
+resource_name = "skip_pulse"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:theme_override_colors/font_color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.0431373), Color(1, 1, 1, 0.733333), Color(1, 1, 1, 0.0431373)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_brv2t"]
+_data = {
+&"skip_pulse": SubResource("Animation_fiowe")
+}
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -20,9 +42,36 @@ background_songs = Array[AudioStream]([ExtResource("2_fiowe"), ExtResource("3_qu
 [node name="Terminal" parent="." instance=ExtResource("1_6312j")]
 layout_mode = 1
 
-[node name="Introduction" type="Node" parent="."]
+[node name="Introduction" type="Node2D" parent="."]
 script = ExtResource("2_ybdc1")
 
-[node name="BackgroundPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="Label" type="Label" parent="Introduction"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1778.0
+offset_top = 1012.0
+offset_right = 1872.0
+offset_bottom = 1035.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(1, 1, 1, 0.0431373)
+text = "(ESC) to skip"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Introduction"]
+libraries = {
+&"": SubResource("AnimationLibrary_brv2t")
+}
+
+[node name="SpacingTimer" type="Timer" parent="Introduction"]
+
+[node name="BackgroundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_fiowe")
+
+[connection signal="intro_done" from="Introduction" to="." method="_on_intro_done"]
 [connection signal="finished" from="BackgroundPlayer" to="." method="_on_background_player_finished"]
