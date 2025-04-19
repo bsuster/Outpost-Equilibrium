@@ -34,6 +34,12 @@
 				"Time cannot progress until all critical systems are stabilized.",
 				"Warning: A system failure is imminent. Day cannot advance safely."
 			],
+			"effects": {
+				"power": -15,
+				"oxygen": -10,
+				"food": -5,
+				"day": 1
+			},
 			"condition": "can_advance_day"
 		},
 		"stabilize_air": {
@@ -69,7 +75,7 @@
 		"deploy_panels": {
 			"description": "Extends solar panels to generate power. Ineffective during dust storms.",
 			"success_text": [
-				"Panels deployed. Power flowing to the grid.[color=green][+20 Power][/color]",
+				"Panels deployed. Power flowing to the grid.\n[color=green][+20 Power][/color]",
 				"Solar collectors fully extended. Energy levels rising.[color=green][+20 Power][/color]"
 			],
 			"failure_text": [

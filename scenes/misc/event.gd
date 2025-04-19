@@ -19,6 +19,10 @@ func apply_effects() -> void:
 	for effect in effects:
 		SystemManager.apply_effect(effect, true)
 
+func remove_effects() -> void:
+	for effect in effects:
+		SystemManager.apply_effect(effect, false)
+
 func clone() -> Event:
 	return Event.new(title, {
 		"description": description,

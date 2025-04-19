@@ -6,13 +6,13 @@ func get_callable_by_name(callable_name: String) -> Callable:
 	return Callable()
 
 func has_min_power_10() -> bool:
-	return SystemManager.power >= 10 and not SystemManager.can_advance_day
+	return SystemManager.power >= 10 and not can_advance_day()
 
 func deploy_panels_enabled():
-	return not SystemManager.deploy_panels_disabled
+	return not SystemManager.deploy_panels_disabled and not can_advance_day()
 
 func has_min_air_5():
-	return SystemManager.oxygen >= 5 and not SystemManager.can_advance_day
+	return SystemManager.oxygen >= 5 and not can_advance_day()
 
 func can_advance_day():
 	return SystemManager.can_advance_day

@@ -44,28 +44,28 @@ func exec_command(command_title) -> String:
 
 func get_status_message() -> String:
 	var output := []
-	output.append("==============================")
-	output.append(" OUTPOST SYSTEM STATUS REPORT ")
-	output.append("==============================")
+	output.append("=====================================")
+	output.append(" OUTPOST SYSTEM STATUS REPORT DAY %s " % SystemManager.day)
+	output.append("=====================================")
 	for resource in ["power", "oxygen", "food"]:
 		var value = SystemManager.get(resource)
 		var label = resource.to_upper() + ""
 		#var warning = get_status_warning(value)
 		output.append(label + ": " + str(value) + "%")
-	output.append("==============================")
+	output.append("=====================================")
 	
 	if EventManager.active_events.is_empty():
-		output.append(" NO ACTIVE EVENTS")
+		output.append(" NO ACTIVE EVENTS ")
 	else:
 		for event in EventManager.active_events:
 			output.append(" ACTIVE EVENTS:")
-			output.append("- " + event.title + ": " + event.description)
+			output.append("- [color=red]" + event.title + "[/color]: " + event.description)
 			if not event.effects.is_empty():
 				output.append("    Effects")
 				for effect in event.effects:
 					output.append("       %s" % event.effects[effect])
 		
-	output.append("==============================")
+	output.append("=====================================")
 	
 	return "\n".join(output)
 
@@ -82,7 +82,7 @@ func get_help_message() -> String:
 	for cmd in sorted_keys:
 		var desc = commands[cmd].get("description")
 		if desc != "exclude":
-			output.append("- " + cmd + ": " + desc)
+			output.append("- [color=green]" + cmd + "[/color]: " + desc)
 	
 	output.append("=========================")
 	return "\n".join(output)

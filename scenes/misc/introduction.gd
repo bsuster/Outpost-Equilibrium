@@ -8,20 +8,20 @@ signal intro_done
 var intro_text_blocks: Array[String] = [
 	"[BOOTING TERMINAL INTERFACE…]",
 	"\n[LOADING COLONY MANAGEMENT SYSTEM v3.42]",
-	"\n[USER IDENTIFIED: SYSTEMS OPERATOR - \"COMMANDER\"]",
-	"\n[STATUS: CRITICAL | CONNECTION: LOST]\n────────────────────────────────────────────────────────",
-	"\n\n> YEAR: 2187  
->> LOCATION: OUTPOST EOS — Epsilon Eridani b  
+	"\n[USER IDENTIFIED: SYSTEMS OPERATOR - \"[color=green]COMMANDER[/color]\"]",
+	"\n[STATUS: [color=red]CRITICAL[/color] | CONNECTION: [color=red]LOST[/color]]\n────────────────────────────────────────────────────────",
+	"\n\n> YEAR: [color=blue]2187[/color]  
+>> LOCATION: [color=blue]OUTPOST EOS — Epsilon Eridani b[/color]  
 >> DISTANCE TO EARTH: 10.5 light years",
-	"\n\n> Log Entry 0001:
+	"\n\n> Log Entry [color=blue]00117[/color]:
 > For 187 days, the colony operated under strict Earth regulation.  
 > Supply drops. Engineering updates. Constant contact.  
 >  ",
 	"
 > Then, silence.",
 
-"\n\n>> ALL CONNECTIONS TO EARTH: TERMINATED  
->> LAST MESSAGE: UNREADABLE | SIGNAL LOSS UNKNOWN  
+"\n\n>> ALL CONNECTIONS TO EARTH: [color=red]TERMINATED[/color]  
+>> LAST MESSAGE: [color=red]UNREADABLE[/color] | SIGNAL LOSS [color=red]UNKNOWN[/color]  
 >> MISSION STATUS: ABANDONED",
 
 "\n\n> The settlers look to you now — the last systems operator on site.  
@@ -38,16 +38,16 @@ var intro_text_blocks: Array[String] = [
 
 ────────────────────────────────────────────────────────
 
->> INTERFACE ACTIVE – COMMAND LINE MODE ENGAGED  
->> Use `help` to view available commands  
->> Use `status` to view current system levels  
->> Type `next` to begin Day 1
+>> INTERFACE [color=green]ACTIVE[/color] – COMMAND LINE MODE [color=green]ENGAGED[/color]  
+>> Use [color=green]`help`[/color] to view available commands  
+>> Use [color=green]`status`[/color] to view current system levels  
+>> Type [color=green]`next`[/color] to progress after your decision has been made
 
 ────────────────────────────────────────────────────────",
 "
 > YOU ARE THE FINAL LINE. BALANCE IS SURVIVAL.",
 "
-> GOOD LUCK, COMMANDER."
+> GOOD LUCK, COMMANDER.",
 ]
 
 var is_intro_canceled: bool = false
@@ -66,7 +66,7 @@ func _show_intro() -> void:
 		if is_intro_canceled:
 			finish_intro()
 			return
-		timer.start(2)
+		timer.start(3)
 		await timer.timeout
 	
 	finish_intro()

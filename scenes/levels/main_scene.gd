@@ -35,6 +35,7 @@ func _next_day() -> void:
 	await terminal.printing_done
 	terminal.print_terminal_output(CommandManager.get_status_message())
 	await terminal.printing_done
-
+#
 func _on_intro_done():
-	_next_day()
+	SystemManager.toggle_can_advance_day()
+	#_next_day()

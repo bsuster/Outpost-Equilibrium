@@ -31,6 +31,7 @@ func refresh_active_events():
 	for event in active_events:
 		event.duration -= 1
 		if event.duration <= 0:
+			event.remove_effects()
 			active_events.erase(event)
 	
 	randomize()

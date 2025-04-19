@@ -2,19 +2,19 @@ extends Node
 
 signal day_updated
 
-var oxygen: int = 1:
+var oxygen: int = 100:
 	set(new_value):
 		oxygen = new_value
 		_check_game_over()
-var food: int = 1:
+var food: int = 100:
 	set(new_value):
 		food = new_value
 		_check_game_over()
-var power: int = 1:
+var power: int = 100:
 	set(new_value):
 		power = new_value
 		_check_game_over()
-var day: int = 1:
+var day: int = 0:
 	set(new_value):
 		day = new_value
 		day_updated.emit()
