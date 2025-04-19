@@ -23,7 +23,7 @@ func run() -> String:
 	if not effects.is_empty():
 		for effect in effects:
 			SystemManager.apply_effect(effect, effects[effect])
-		SystemManager.toggle_can_advance_day()
+		SystemManager.set_can_advance_day(true)
 	
 	return get_success_text()
 

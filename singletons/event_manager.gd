@@ -35,7 +35,7 @@ func refresh_active_events():
 			active_events.erase(event)
 	
 	randomize()
-	while randi_range(1, 10) == 10:
+	while randi_range(1, 4) == 1:
 		var new_event: Event = available_events.pick_random().clone()
 		var is_event_active: bool = false
 		for active_event in active_events:

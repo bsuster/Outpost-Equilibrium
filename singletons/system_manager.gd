@@ -21,7 +21,7 @@ var day: int = 0:
 var deploy_panels_disabled: bool = false
 var is_game_over: bool = false
 
-var can_advance_day: bool = false
+var can_advance_day: bool = true
 
 func apply_effect(effect_name: String, value) -> void:
 	var new_value = value
@@ -32,6 +32,9 @@ func apply_effect(effect_name: String, value) -> void:
 
 func toggle_can_advance_day():
 	can_advance_day = not can_advance_day
+
+func set_can_advance_day(value: bool):
+	can_advance_day = value
 
 func _check_game_over():
 	if [food, oxygen, power].any(func(val): return val <= 0):

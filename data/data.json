@@ -74,7 +74,7 @@
 			"description": "Extends solar panels to generate power. Ineffective during dust storms.",
 			"success_text": [
 				"Panels deployed. Power flowing to the grid.\n[color=green][+20 Power][/color]",
-				"Solar collectors fully extended. Energy levels rising.[color=green][+20 Power][/color]"
+				"Solar collectors fully extended. Energy levels rising.\n[color=green][+20 Power][/color]"
 			],
 			"failure_text": [
 				"Dust storm interference. No sunlight. Panels remain offline."
@@ -115,40 +115,40 @@
 			},
 			"duration": 2
 		},
-	"Oxygen Leak": {
-		"description": "A breach in a habitat dome is causing a slow loss of atmosphere.",
-		"effects": {
-			"atmosphere": -15
+		"oxygen_leak": {
+			"description": "A breach in a habitat dome is causing a slow loss of atmosphere.",
+			"effects": {
+				"oxygen": -15
+			},
+			"duration": 1,
 		},
-		"duration": 1,
-	},
-		"Food Shipment Delay": {
+		"food_shipment_delay": {
 			"description": "Supply drop missed its scheduled arrival window.",
 			"effects": {
 				"food": -5
 			},
 			"duration": 1,
 		},
-		"Solar Surge": {
+		"solar_surge": {
 			"description": "An unexpected solar flare boosts power output temporarily.",
 			"effects": {
 				"power": 10
 			},
 			"duration": 1,
 		},
-		"Bot Malfunction": {
+		"bot_malfunction": {
 			"description": "Automated repair bots are down for diagnostics.",
 			"effects": {
 				"power": -3,
-				"atmosphere": -2
+				"oxygen": -2
 			},
 			"duration": 2,
 		},
 		"Colony Celebration": {
 			"description": "A morale boost event improves efficiency across systems.",
 			"effects": {
-			"power": 5,
-			"atmosphere": 5,
+				"power": 5,
+				"oxygen": 5,
 				"food": 5
 			},
 			"duration": 1,

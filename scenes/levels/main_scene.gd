@@ -24,6 +24,7 @@ func _on_background_player_finished() -> void:
 	_play_next_song()
 
 func _next_day() -> void:
+	terminal.disable_input()
 	await get_tree().create_timer(2).timeout
 	EventManager.refresh_active_events()
 	if terminal.is_printing:
@@ -35,8 +36,11 @@ func _next_day() -> void:
 	await terminal.printing_done
 	terminal.print_terminal_output(CommandManager.get_status_message())
 	await terminal.printing_done
+	#await get_tree().create_timer(.2).timeout
+	SystemManager.set_can_advance_day(false)
+	terminal.enable_input()
 #
 func _on_intro_done():
-	SystemManager.toggle_can_advance_day()
+	#SystemManager.toggle_can_advance_day()
 	#_next_day()
 	terminal.submit_input("next")

@@ -13,20 +13,22 @@ var previous_command: String = ""
 var is_printer_override: bool = false
 
 func _ready():
-	terminal_input.set_keep_editing_on_text_submit(true)
+	terminal_input.focus_mode = Control.FOCUS_ALL
+	terminal_input.grab_focus.call_deferred()
 	if get_tree().current_scene == self:
 		enable_input()
+	
 
 func _input(event):
 	if event.is_action_pressed("submit_input"):
 		submit_input()
 
 func disable_input() -> void:
+	terminal_input.release_focus.call_deferred()
 	terminal_input.editable = false
 
 func enable_input() -> void:
 	terminal_input.editable = true
-	#terminal_input.set_keep_editing_on_text_submit(true)
 	terminal_input.grab_focus.call_deferred()
 
 func submit_input(force_input: String = ""):
@@ -39,9 +41,10 @@ func submit_input(force_input: String = ""):
 	terminal_input.clear()
 	
 	var command_arr = command.split(" ")
-	var command_text = "\n> " + command + "\n"
-	print_terminal_output(command_text)
-	await printing_done
+	if force_input == "":
+		var command_text = "\n> " + command + "\n"
+		print_terminal_output(command_text)
+		await printing_done
 	
 	var command_output = CommandManager.exec_command(command_arr[0])
 	if command_output == "":

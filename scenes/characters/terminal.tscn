@@ -50,6 +50,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 max_length = 110
 editable = false
+keep_editing_on_text_submit = true
 emoji_menu_enabled = false
 shortcut_keys_enabled = false
 middle_mouse_paste_enabled = false

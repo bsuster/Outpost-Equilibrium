@@ -70,17 +70,17 @@ func get_status_message() -> String:
 	return "\n".join(output)
 
 func get_help_message() -> String:
-	var commands: Dictionary = Globals.base_game_data["commands"]
+	var _commands: Dictionary = Globals.base_game_data["commands"]
 	var output := []
 	output.append("=========================")
 	output.append(" AVAILABLE TERMINAL COMMANDS")
 	output.append("=========================")
 	
-	var sorted_keys := commands.keys()
+	var sorted_keys := _commands.keys()
 	sorted_keys.sort()
 	
 	for cmd in sorted_keys:
-		var desc = commands[cmd].get("description")
+		var desc = _commands[cmd].get("description")
 		if desc != "exclude":
 			output.append("- [color=green]" + cmd + "[/color]: " + desc)
 	
