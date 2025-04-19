@@ -39,3 +39,4 @@ func _next_day() -> void:
 func _on_intro_done():
 	SystemManager.toggle_can_advance_day()
 	#_next_day()
+	terminal.submit_input("next")

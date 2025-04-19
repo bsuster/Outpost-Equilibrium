@@ -14,9 +14,7 @@
 		},
 		"status": {
 			"description": "Displays the current status of all primary systems and environmental conditions.",
-			"success_text": [
-				"Colony system status report generated."
-			],
+			"success_text": [],
 			"failure_text": [
 				"Unable to retrieve system status. Core telemetry offline."
 			],
@@ -116,7 +114,45 @@
 				"deploy_panels_disabled": "Solar panels are unable to be deployed.",
 			},
 			"duration": 2
-		}
+		},
+	"Oxygen Leak": {
+		"description": "A breach in a habitat dome is causing a slow loss of atmosphere.",
+		"effects": {
+			"atmosphere": -15
+		},
+		"duration": 1,
+	},
+		"Food Shipment Delay": {
+			"description": "Supply drop missed its scheduled arrival window.",
+			"effects": {
+				"food": -5
+			},
+			"duration": 1,
+		},
+		"Solar Surge": {
+			"description": "An unexpected solar flare boosts power output temporarily.",
+			"effects": {
+				"power": 10
+			},
+			"duration": 1,
+		},
+		"Bot Malfunction": {
+			"description": "Automated repair bots are down for diagnostics.",
+			"effects": {
+				"power": -3,
+				"atmosphere": -2
+			},
+			"duration": 2,
+		},
+		"Colony Celebration": {
+			"description": "A morale boost event improves efficiency across systems.",
+			"effects": {
+			"power": 5,
+			"atmosphere": 5,
+				"food": 5
+			},
+			"duration": 1,
+		},
 	},
 	"warnings": {
 		"low_power": ">> CRITICAL: Power Grid is dangerously low. Life support at risk.",

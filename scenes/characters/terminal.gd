@@ -29,10 +29,10 @@ func enable_input() -> void:
 	#terminal_input.set_keep_editing_on_text_submit(true)
 	terminal_input.grab_focus.call_deferred()
 
-func submit_input():
+func submit_input(force_input: String = ""):
 	if is_printing:
 		return
-	var command = terminal_input.text.strip_edges()
+	var command = terminal_input.text.strip_edges() if force_input == "" else force_input
 	var regex = RegEx.new()
 	regex.compile("\\[.*?\\]")
 	command = regex.sub(command, "", true).to_lower()
