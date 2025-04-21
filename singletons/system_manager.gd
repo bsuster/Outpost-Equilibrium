@@ -4,15 +4,15 @@ signal day_updated
 
 var oxygen: int = 100:
 	set(new_value):
-		oxygen = new_value
+		oxygen = clamp(new_value, 0, 100)
 		_check_game_over()
 var food: int = 100:
 	set(new_value):
-		food = new_value
+		food = clamp(new_value, 0, 100)
 		_check_game_over()
 var power: int = 100:
 	set(new_value):
-		power = new_value
+		power = clamp(new_value, 0, 100)
 		_check_game_over()
 var day: int = 0:
 	set(new_value):

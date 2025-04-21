@@ -23,6 +23,7 @@ Globals="*res://singletons/globals.gd"
 SystemManager="*res://singletons/system_manager.gd"
 EventManager="*res://singletons/event_manager.gd"
 ConditionManager="*res://singletons/condition_manager.gd"
+EffectManager="*res://singletons/effect_manager.gd"
 CommandManager="*res://singletons/command_manager.gd"
 
 [display]

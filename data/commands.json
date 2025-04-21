@@ -1,0 +1,115 @@
+{
+	"skip": {
+		"description": "Skips issuing a command for the day cycle. No actions are taken, but resource depletion continues.",
+		"success_text": ["You chose not to act. Systems continue to degrade."],
+		"failure_text": ["Unable to skip turn due to unresolved critical failure."],
+		"condition": "can_skip",
+		"effects": {
+			"update_power": -15,
+			"update_oxygen": -10,
+			"update_food": -5,
+			"update_day": 1
+		},
+	},
+	"status": {
+		"description": "Displays the current status of all primary systems and environmental conditions.",
+		"success_text": [],
+		"failure_text": [
+			"Unable to retrieve system status. Core telemetry offline."
+		],
+		"effects": {},
+		"condition": null,
+	},
+	"next": {
+		"description": "Advances time by one day. All systems consume resources based on base depletion rates and environmental effects.",
+		"success_text": [
+			"Day advanced. Systems report nominal.",
+			"Another day passes in silence.",
+			"Time moves forward, whether you're ready or not..."
+		],
+		"failure_text": [
+			"Time cannot progress until all critical systems are stabilized.",
+			"Warning: A system failure is imminent. Day cannot advance safely."
+		],
+		"effects": {
+			"update_power": -15,
+			"update_oxygen": -10,
+			"update_food": -5,
+			"update_day": 1
+		},
+		"condition": "can_advance_day"
+	},
+	"stabilize_air": {
+		"description": "Purges toxins and recycles breathable air to maintain colony atmosphere.",
+		"success_text": [
+			"Air scrubbers hum to life. Colonists breathe easier.\n[color=green][+15 Oxygen][/color]\n[color=red][-10 Power][/color]",
+			"Atmospheric systems stabilized. Breathing quality improved.\n[color=green][+15 Oxygen][/color]\n[color=red][-10 Power][/color]"
+		],
+		"failure_text": [
+			"Scrubbers failed to initialize. Manual override required."
+			],
+		"effects": {
+			"update_oxygen": 15,
+			"update_power": -10
+		},
+		"condition": "has_min_power_10"
+	},
+	"cultivate_crops": {
+		"description": "Routes CO2 into hydroponic systems to grow food.",
+		"success_text": [
+			"Hydroponic trays activated. Crops begin to flourish.\n[color=green][+20 Food][/color]\n[color=red][-5 Oxygen][/color]",
+			"Greenhouse systems rerouted. Food production initiated.\n[color=green][+20 Food][/color]\n[color=red][-5 Oxygen][/color]"
+		],
+		"failure_text": [
+			"The crops have been infected by unkown contageon"
+		],
+		"effects": {
+			"update_food": 20,
+			"update_oxygen": -5
+		},
+		"condition": "has_min_air_5"
+	},
+	"deploy_panels": {
+		"description": "Extends solar panels to generate power. Ineffective during dust storms.",
+		"success_text": [
+			"Panels deployed. Power flowing to the grid.\n[color=green][+20 Power][/color]",
+			"Solar collectors fully extended. Energy levels rising.\n[color=green][+20 Power][/color]"
+		],
+		"failure_text": [
+			"Dust storm interference. No sunlight. Panels remain offline."
+		],
+		"effects": {
+			"update_power": 20
+		},
+		"condition": "deploy_panels_enabled",
+	},
+	"exit": {
+		"description": "Abandon your post and commit yourself and all those aboard your station to the void.",
+		"success_text": [
+			"Are you sure you wish to abandon your post?\n[color=red][YES][/color] or [color=green][NO][/color]"
+		],
+		"condition": null,
+	},
+	"yes": {
+		"description": "exclude",
+		"success_text": [""],
+		"condition": null,
+	},
+	"no": {
+		"description": "exclude",
+		"success_text": [""],
+		"condition": null,
+	},
+	"help": {
+		"description": "Display this help message.",
+		"success_text": [],
+		"condition": null,
+	},
+	"restart": {
+		"name": "restart",
+		"description": "Resets the game to its initial state.",
+		"success_text": "System reboot initialized. Good luck, Commander.",
+		"failure_text": "Unable to restart. Try again.",
+		"conditions": ["can_restart"]
+	},
+}

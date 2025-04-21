@@ -21,10 +21,15 @@ func _init() -> void:
 	_restore_data()
 
 func _restore_data() -> void:
-	var event_data = Globals.base_game_data["events"]
+	var path = "res://data/events.json"
+	if not FileAccess.file_exists(path):
+		return
+	
+	var data_string = FileAccess.get_file_as_string(path)
+	var event_data = JSON.parse_string(data_string)
 	
 	for event in event_data:
-		var new_event: Event = Event.new(event, event_data[event])
+		var new_event: Event = Event.new(event_data[event])
 		events.append(new_event)
 
 func refresh_active_events():
@@ -36,16 +41,11 @@ func refresh_active_events():
 	
 	randomize()
 	while randi_range(1, 4) == 1:
+		if available_events.is_empty():
+			return
 		var new_event: Event = available_events.pick_random().clone()
-		var is_event_active: bool = false
-		for active_event in active_events:
-			if active_event.title == new_event.title:
-				is_event_active = true
-			if is_event_active:
-				break
-		if not is_event_active:
-			active_events.append(new_event)
-			new_event.apply_effects()
+		active_events.append(new_event)
+		new_event.apply_effects()
 	
 
 func get_random_event() -> Event:

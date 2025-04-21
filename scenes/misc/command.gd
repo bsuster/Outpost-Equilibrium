@@ -22,7 +22,8 @@ func can_run() -> bool:
 func run() -> String:
 	if not effects.is_empty():
 		for effect in effects:
-			SystemManager.apply_effect(effect, effects[effect])
+			var callable = EffectManager.get_callable_by_name(effect)
+			callable.call(effects[effect])
 		SystemManager.set_can_advance_day(true)
 	
 	return get_success_text()

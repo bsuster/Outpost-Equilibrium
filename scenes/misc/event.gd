@@ -6,26 +6,29 @@ var title: String = ""
 var description: String = ""
 var effects: Dictionary
 var duration: int # Number of days the effect lasts
+var is_removable: bool = false
 
-func _init(t: String, event: Dictionary) -> void:
-	title = t
+func _init(event: Dictionary) -> void:
 	for prop in event:
 		set(prop, event[prop])
-	#title = t
-	#description = d
-	#effects = m
 
 func apply_effects() -> void:
 	for effect in effects:
-		SystemManager.apply_effect(effect, true)
+		var callable = EffectManager.get_callable_by_name(effect)
+		callable.call(effects[effect].value)
 
 func remove_effects() -> void:
 	for effect in effects:
-		SystemManager.apply_effect(effect, false)
+		if not is_removable:
+			return
+		var callable = EffectManager.get_callable_by_name(effect)
+		callable.call(false)
 
 func clone() -> Event:
-	return Event.new(title, {
+	return Event.new({
+		"title": title,
 		"description": description,
 		"effects": effects,
-		"duration": duration
+		"duration": duration,
+		"is_removable": is_removable
 	})

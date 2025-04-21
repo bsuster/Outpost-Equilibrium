@@ -64,6 +64,8 @@ func _show_intro() -> void:
 		terminal.print_terminal_output(line)
 		await terminal.printing_done
 		if is_intro_canceled:
+			terminal.print_terminal_output("]")
+			await terminal.printing_done
 			finish_intro()
 			return
 		timer.start(3)

@@ -1,0 +1,86 @@
+{
+	"dust_storm": {
+		"title": "Dust Storm",
+		"description": "Solar Dust Storm detected. Solar panels offline.",
+		"effects": {
+			"deploy_panels_disabled": {
+				"description": "Deploy Panels Disabled",
+				"value": true,
+			}
+		},
+		"duration": 2,
+		"is_removable": true
+	},
+	"oxygen_leak": {
+		"title": "Oxygen Leak",
+		"description": "A breach in a habitat dome is causing a slow loss of atmosphere.",
+		"effects": {
+			"update_oxygen": {
+					"description": "Oxygen",
+					"value":  -15
+				}
+		},
+		"duration": 1,
+		"is_removable": false
+	},
+	"food_shipment_delay": {
+		"title": "Food Shipment Delay",
+		"description": "Supply drop missed its scheduled arrival window.",
+		"effects": {
+			"update_food": {
+				"description": "Food",
+				"value": -5,
+			}
+		},
+		"duration": 1,
+		"is_removable": false
+	},
+	"solar_surge": {
+		"title": "Solar Surge",
+		"description": "An unexpected solar flare boosts power output temporarily.",
+		"effects": {
+			"update_power": {
+				"description": "Power",
+				"value": 10,
+			}
+		},
+		"duration": 1,
+		"is_removable": false
+	},
+	"bot_malfunction": {
+		"title": "Bot Malfunction",
+		"description": "Automated repair bots are down for diagnostics.",
+		"effects": {
+			"update_power": {
+					"description": "Power",
+					"value": -3,
+				},
+			"update_oxygen": {
+					"description": "Oxygen",
+					"value":  -2
+				},
+		},
+		"duration": 2,
+		"is_removable": false
+	},
+	"colony_celebration": {
+		"title": "Colony Celebration",
+		"description": "A morale boost event improves efficiency across systems.",
+		"effects": {
+			"update_power": {
+				"description": "Power",
+				"value": 5,
+			},
+			"update_oxygen": {
+					"description": "Oxygen",
+					"value":  5,
+				},
+			"update_food": {
+				"description": "Food",
+				"value": 5,
+			}
+		},
+		"duration": 1,
+		"is_removable": false
+	},
+}

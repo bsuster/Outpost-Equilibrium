@@ -8,7 +8,12 @@ func _init():
 	_restore_data()
 
 func _restore_data():
-	commands = Globals.base_game_data["commands"]
+	var path = "res://data/commands.json"
+	if not FileAccess.file_exists(path):
+		return
+	
+	var data_string = FileAccess.get_file_as_string(path)
+	commands = JSON.parse_string(data_string)
 	for command in commands:
 		var new_command = Command.new(command, commands[command])
 		if command == "help":
@@ -63,24 +68,23 @@ func get_status_message() -> String:
 			if not event.effects.is_empty():
 				output.append("    Effects")
 				for effect in event.effects:
-					output.append("       %s" % event.effects[effect])
+					output.append("       %s: %s" % [event.effects[effect].description, event.effects[effect].value])
 		
 	output.append("=====================================")
 	
 	return "\n".join(output)
 
 func get_help_message() -> String:
-	var _commands: Dictionary = Globals.base_game_data["commands"]
 	var output := []
 	output.append("=========================")
 	output.append(" AVAILABLE TERMINAL COMMANDS")
 	output.append("=========================")
 	
-	var sorted_keys := _commands.keys()
+	var sorted_keys := commands.keys()
 	sorted_keys.sort()
 	
 	for cmd in sorted_keys:
-		var desc = _commands[cmd].get("description")
+		var desc = commands[cmd].get("description")
 		if desc != "exclude":
 			output.append("- [color=green]" + cmd + "[/color]: " + desc)
 	

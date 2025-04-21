@@ -19,3 +19,6 @@ func can_advance_day():
 
 func can_skip():
 	return not SystemManager.can_advance_day
+
+func can_restart():
+	return true
