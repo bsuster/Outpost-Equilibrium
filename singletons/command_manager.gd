@@ -33,6 +33,9 @@ func exec_command(command_title) -> String:
 	if command_title == "status":
 		return get_status_message()
 	
+	if command_title == "restart":
+		return restart_game()
+	
 	if command.can_run():
 		if previous_command == "exit":
 			if command_title == "yes":
@@ -49,15 +52,15 @@ func exec_command(command_title) -> String:
 
 func get_status_message() -> String:
 	var output := []
-	output.append("=====================================")
-	output.append(" OUTPOST SYSTEM STATUS REPORT DAY %s " % SystemManager.day)
-	output.append("=====================================")
+	output.append("==============================")
+	output.append(" OUTPOST SYSTEM STATUS REPORT ")
+	output.append("==============================")
 	for resource in ["power", "oxygen", "food"]:
 		var value = SystemManager.get(resource)
 		var label = resource.to_upper() + ""
 		#var warning = get_status_warning(value)
 		output.append(label + ": " + str(value) + "%")
-	output.append("=====================================")
+	output.append("==============================")
 	
 	if EventManager.active_events.is_empty():
 		output.append(" NO ACTIVE EVENTS ")
@@ -70,15 +73,15 @@ func get_status_message() -> String:
 				for effect in event.effects:
 					output.append("       %s: %s" % [event.effects[effect].description, event.effects[effect].value])
 		
-	output.append("=====================================")
+	output.append("==============================")
 	
 	return "\n".join(output)
 
 func get_help_message() -> String:
 	var output := []
-	output.append("=========================")
-	output.append(" AVAILABLE TERMINAL COMMANDS")
-	output.append("=========================")
+	output.append("=============================")
+	output.append(" AVAILABLE TERMINAL COMMANDS ")
+	output.append("=============================")
 	
 	var sorted_keys := commands.keys()
 	sorted_keys.sort()
@@ -88,5 +91,9 @@ func get_help_message() -> String:
 		if desc != "exclude":
 			output.append("- [color=green]" + cmd + "[/color]: " + desc)
 	
-	output.append("=========================")
+	output.append("=============================")
 	return "\n".join(output)
+
+func restart_game() -> String:
+	SystemManager.restart_game()
+	return ""

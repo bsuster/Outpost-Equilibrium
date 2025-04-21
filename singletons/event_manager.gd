@@ -55,3 +55,8 @@ func get_random_event() -> Event:
 		return null
 	
 	return events.pick_random()
+
+func clear_active_events() -> void:
+	for event in active_events:
+		event.remove_effects()
+		active_events.erase(event)

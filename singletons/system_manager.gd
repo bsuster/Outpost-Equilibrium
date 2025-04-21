@@ -39,3 +39,10 @@ func set_can_advance_day(value: bool):
 func _check_game_over():
 	if [food, oxygen, power].any(func(val): return val <= 0):
 		is_game_over = true
+
+func restart_game():
+	day = 1
+	power = 85
+	oxygen = 90
+	food = 95
+	EventManager.clear_active_events()

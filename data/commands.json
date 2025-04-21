@@ -108,8 +108,8 @@
 	"restart": {
 		"name": "restart",
 		"description": "Resets the game to its initial state.",
-		"success_text": "System reboot initialized. Good luck, Commander.",
-		"failure_text": "Unable to restart. Try again.",
-		"conditions": ["can_restart"]
+		"success_text": ["System reboot initialized. Good luck, Commander."],
+		"failure_text": ["Unable to restart. Try again."],
+		"conditions": ["can_restart"],
 	},
 }
