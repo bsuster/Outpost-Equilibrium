@@ -26,7 +26,7 @@ var intro_text_blocks: Array[String] = [
 
 "\n\n> The settlers look to you now, the last systems operator on site.  
 > With no help coming, survival rests on your ability to maintain  
-> the colony’s core systems: 
+> the colony's core systems: 
 
 - OXYGEN  
 - POWER GRID  
