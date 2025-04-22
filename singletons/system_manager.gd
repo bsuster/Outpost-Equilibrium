@@ -3,15 +3,15 @@ extends Node
 signal day_updated
 signal game_over
 
-var oxygen: int = 1:
+var oxygen: int = 100:
 	set(new_value):
 		oxygen = clamp(new_value, 0, 100)
 		_check_game_over()
-var food: int = 1:
+var food: int = 100:
 	set(new_value):
 		food = clamp(new_value, 0, 100)
 		_check_game_over()
-var power: int = 1:
+var power: int = 100:
 	set(new_value):
 		power = clamp(new_value, 0, 100)
 		_check_game_over()
