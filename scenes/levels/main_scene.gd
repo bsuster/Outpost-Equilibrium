@@ -26,10 +26,10 @@ func _on_background_player_finished() -> void:
 func _next_day() -> void:
 	terminal.disable_input()
 	await get_tree().create_timer(2).timeout
+	EventManager.refresh_active_events()
 	if SystemManager.is_game_over:
 		_show_game_over_screen()
 		return
-	EventManager.refresh_active_events()
 	if terminal.is_printing:
 		await terminal.printing_done
 	var day_string = "\nDay: %s" % [SystemManager.day]
