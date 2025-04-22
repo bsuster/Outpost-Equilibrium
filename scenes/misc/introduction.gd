@@ -11,8 +11,8 @@ var intro_text_blocks: Array[String] = [
 	"\n[USER IDENTIFIED: SYSTEMS OPERATOR - \"[color=green]COMMANDER[/color]\"]",
 	"\n[STATUS: [color=red]CRITICAL[/color] | CONNECTION: [color=red]LOST[/color]]\n----------------------------------------------------",
 	"\n\n> YEAR: 2187 
->> LOCATION: OUTPOST EOS — Epsilon Eridani B 
->> DISTANCE TO EARTH: 10.5 light years",
+>> LOCATION: OUTPOST EOS - Kepler-452b 
+>> DISTANCE TO EARTH: 1,800 light years",
 	"\n\n> Log Entry [color=blue]00117[/color]:
 > For 187 days, the colony operated under strict Earth regulation.  
 > Supply drops. Engineering updates. Constant contact.  
@@ -24,7 +24,7 @@ var intro_text_blocks: Array[String] = [
 >> LAST MESSAGE: [color=red]UNREADABLE[/color] | SIGNAL LOSS [color=red]UNKNOWN[/color]  
 >> MISSION STATUS: [color=red]ABANDONED[/color]",
 
-"\n\n> The settlers look to you now — the last systems operator on site.  
+"\n\n> The settlers look to you now, the last systems operator on site.  
 > With no help coming, survival rests on your ability to maintain  
 > the colony’s core systems: 
 
@@ -36,14 +36,14 @@ var intro_text_blocks: Array[String] = [
 
 "
 
-────────────────────────────────────────────────────────
+========================================================
 
 >> INTERFACE [color=green]ACTIVE[/color] – COMMAND LINE MODE [color=green]ENGAGED[/color]  
 >> Use [color=blue]`help`[/color] to view available commands  
 >> Use [color=blue]`status`[/color] to view current system levels  
 >> Type [color=blue]`next`[/color] to progress after your decision has been made
 
-────────────────────────────────────────────────────────",
+========================================================",
 "
 > YOU ARE THE FINAL LINE. BALANCE IS SURVIVAL.",
 "
