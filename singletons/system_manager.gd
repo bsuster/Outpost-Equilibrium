@@ -1,7 +1,7 @@
 extends Node
 
 signal day_updated
-signal game_over
+signal game_restarted
 
 var oxygen: int = 100:
 	set(new_value):
@@ -40,9 +40,9 @@ func set_can_advance_day(value: bool):
 func _check_game_over():
 	if [food, oxygen, power].any(func(val): return val <= 0):
 		is_game_over = true
-		game_over.emit()
 
 func restart_game():
+	game_restarted.emit()
 	day = 1
 	power = 85
 	oxygen = 90

@@ -48,7 +48,7 @@ func _show_game_over_screen() -> void:
 	var oxygen_color = "red" if SystemManager.oxygen <= 0 else "white"
 	var food_color = "red" if SystemManager.food <= 0 else "white"
 	var game_over_art = [
-		"\n[ █ SYSTEM FAILURE █ ]",
+		"\n[ !! SYSTEM FAILURE !! ]",
 		"",
 		"CRITICAL SYSTEMS OFFLINE",
 		"",

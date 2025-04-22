@@ -13,6 +13,7 @@ var previous_command: String = ""
 var is_printer_override: bool = false
 
 func _ready():
+	SystemManager.game_restarted.connect(clear_console)
 	terminal_input.focus_mode = Control.FOCUS_ALL
 	terminal_input.grab_focus.call_deferred()
 	if get_tree().current_scene == self:
@@ -82,3 +83,6 @@ func _print_character(character: String) -> void:
 
 func force_print_stop() -> void:
 	is_printer_override = true
+
+func clear_console() -> void:
+	terminal_output.text = "Rebooting...\n\n"

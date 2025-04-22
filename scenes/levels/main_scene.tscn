@@ -9,7 +9,7 @@
 
 [sub_resource type="Animation" id="Animation_fiowe"]
 resource_name = "skip_pulse"
-length = 3.0
+length = 5.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -18,10 +18,10 @@ tracks/0/path = NodePath("Label:theme_override_colors/font_color")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5, 3),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 2.5, 5),
+"transitions": PackedFloat32Array(1, 0.574349, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.0431373), Color(1, 1, 1, 0.733333), Color(1, 1, 1, 0.0431373)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.294118), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_brv2t"]
@@ -46,21 +46,21 @@ layout_mode = 1
 script = ExtResource("2_ybdc1")
 
 [node name="Label" type="Label" parent="Introduction"]
-visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1778.0
-offset_top = 1012.0
-offset_right = 1872.0
-offset_bottom = 1035.0
+offset_left = 1185.0
+offset_top = 695.0
+offset_right = 1279.0
+offset_bottom = 718.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme_override_colors/font_color = Color(1, 1, 1, 0.0431373)
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_font_sizes/font_size = 12
 text = "(ESC) to skip"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Introduction"]

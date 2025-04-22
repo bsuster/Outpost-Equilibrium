@@ -38,7 +38,7 @@ var intro_text_blocks: Array[String] = [
 
 ========================================================
 
->> INTERFACE [color=green]ACTIVE[/color] – COMMAND LINE MODE [color=green]ENGAGED[/color]  
+>> INTERFACE [color=green]ACTIVE[/color] - COMMAND LINE MODE [color=green]ENGAGED[/color]  
 >> Use [color=blue]`help`[/color] to view available commands  
 >> Use [color=blue]`status`[/color] to view current system levels  
 >> Type [color=blue]`next`[/color] to progress after your decision has been made
@@ -53,10 +53,11 @@ var intro_text_blocks: Array[String] = [
 var is_intro_canceled: bool = false
 
 func _ready():
+	$Label.visible = false
 	_show_intro()
-	#await get_tree().create_timer(2).timeout
-	#$Label.visible = true
-	#$AnimationPlayer.play("skip_pulse")
+	await get_tree().create_timer(10).timeout
+	$Label.visible = true
+	$AnimationPlayer.play("skip_pulse")
 
 func _show_intro() -> void:
 	terminal.disable_input()
