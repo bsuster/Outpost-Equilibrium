@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://glwu02yeossn"
-path="res://.godot/imported/OutpostEquilibriumIcon.png-9231762db0bbd82b6bfadc046b1a8500.ctex"
+uid="uid://dx3c3kay0r72o"
+path="res://.godot/imported/OutpostEquilibriumIcon_small.png-45813c906c307a025f1b7e9f796fef73.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://OutpostEquilibriumIcon.png"
-dest_files=["res://.godot/imported/OutpostEquilibriumIcon.png-9231762db0bbd82b6bfadc046b1a8500.ctex"]
+source_file="res://OutpostEquilibriumIcon_small.png"
+dest_files=["res://.godot/imported/OutpostEquilibriumIcon_small.png-45813c906c307a025f1b7e9f796fef73.ctex"]
 
 [params]
 

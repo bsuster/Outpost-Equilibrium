@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkscwnpo0mbfl"]
+[gd_scene load_steps=6 format=3 uid="uid://bkscwnpo0mbfl"]
 
 [ext_resource type="Theme" uid="uid://di4e7tnr2a1hj" path="res://terminal_theme.tres" id="1_w35if"]
 [ext_resource type="Script" uid="uid://hm7rfmep5iuy" path="res://scenes/characters/terminal.gd" id="2_17c4d"]
 [ext_resource type="AudioStream" uid="uid://cinscncyvwdrp" path="res://sounds/button-202966.mp3" id="3_0td1w"]
+[ext_resource type="FontFile" uid="uid://bv40slj05t5cv" path="res://fonts/whitrabt.ttf" id="3_h6vce"]
+[ext_resource type="Texture2D" uid="uid://dx3c3kay0r72o" path="res://OutpostEquilibriumIcon_small.png" id="3_ixexu"]
 
 [node name="Terminal" type="Control"]
 layout_mode = 3
@@ -14,15 +16,43 @@ grow_vertical = 2
 theme = ExtResource("1_w35if")
 script = ExtResource("2_17c4d")
 
+[node name="TabBar" type="TabBar" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_vertical = 0
+theme_override_constants/icon_max_width = 25
+theme_override_fonts/font = ExtResource("3_h6vce")
+theme_override_font_sizes/font_size = 12
+current_tab = 0
+scrolling_enabled = false
+tab_count = 1
+tab_0/title = "Colony Management System v3.42"
+tab_0/icon = ExtResource("3_ixexu")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -327.0
+offset_bottom = 359.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0823529, 0.0941176, 0.113725, 1)
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
