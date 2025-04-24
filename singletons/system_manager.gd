@@ -42,6 +42,7 @@ func _check_game_over():
 		is_game_over = true
 
 func restart_game():
+	is_game_over = 0
 	game_restarted.emit()
 	day = 1
 	power = 85
