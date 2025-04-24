@@ -72,6 +72,7 @@ func get_status_message() -> String:
 				output.append("    Effects")
 				for effect in event.effects:
 					output.append("       %s: %s" % [event.effects[effect].description, event.effects[effect].value])
+				output.append("    Days left: %s" % [event.duration])
 		
 	output.append("==============================")
 	
