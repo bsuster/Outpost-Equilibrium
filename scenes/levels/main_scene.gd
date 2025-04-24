@@ -31,7 +31,9 @@ func _on_background_player_finished() -> void:
 
 func _next_day() -> void:
 	terminal.disable_input()
-	await get_tree().create_timer(2).timeout
+	if terminal.is_printing:
+		await terminal.printing_done
+	await get_tree().create_timer(4).timeout
 	if not CommandManager.has_command_history or CommandManager.command_history[0] != "skip":
 		var msg: String = day_progression_message[randi_range(0, day_progression_message.size() - 1)]
 		terminal.print_terminal_output(msg)

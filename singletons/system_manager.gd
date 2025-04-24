@@ -81,6 +81,6 @@ func get_percent_to_bar(current: float, max: float, width: int = 20, color: Stri
 func _handle_day_change() -> void:
 	for prop in base_depletion:
 		set(prop, get(prop) + base_depletion[prop])
-		base_depletion[prop] += daily_scaling[prop]
+		base_depletion[prop] -= daily_scaling[prop]
 	day_updated.emit()
 	
