@@ -57,9 +57,10 @@ func get_status_message() -> String:
 	output.append("==============================")
 	for resource in ["power", "oxygen", "food"]:
 		var value = SystemManager.get(resource)
-		var label = resource.to_upper() + ""
+		var label = SystemManager.get_resource_label(resource)
 		#var warning = get_status_warning(value)
-		output.append(label + ": " + str(value) + "%")
+		var percent_bar = SystemManager.get_percent_to_bar(value)
+		output.append(label + ": " + percent_bar)
 	output.append("==============================")
 	
 	if EventManager.active_events.is_empty():
@@ -96,5 +97,6 @@ func get_help_message() -> String:
 	return "\n".join(output)
 
 func restart_game() -> String:
+	previous_command = ""
 	SystemManager.restart_game()
 	return ""

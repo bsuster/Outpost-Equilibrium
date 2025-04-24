@@ -49,3 +49,20 @@ func restart_game():
 	oxygen = 90
 	food = 95
 	EventManager.clear_active_events()
+
+func get_resource_label(resource: String) -> String:
+	match resource.to_lower():
+		"power":
+			return "POW"
+		"food":
+			return "FOD"
+		"oxygen":
+			return "OXY"
+	return ""
+
+func get_percent_to_bar(value) -> String:
+	var bar_count = value / 5
+	var output = ""
+	for i in bar_count:
+		output += "█"
+	return output
