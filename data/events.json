@@ -83,4 +83,16 @@
 		"duration": 1,
 		"is_removable": false
 	},
+	"colonist_born": {
+		"title": "Colonist Born",
+		"description": "A child has been born in the colony — a rare sign of hope. However, even infants must eat.",
+		"effects": {
+			"update_food_scaling": {
+				"description": "Food Depletion",
+				"value": 0.5,
+			},
+		},
+		"duration": 1,
+		"is_removable": false
+	},
 }

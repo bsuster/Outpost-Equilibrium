@@ -85,7 +85,7 @@ func get_status_message() -> String:
 		var value = SystemManager.get(resource)
 		var label = SystemManager.get_resource_label(resource)
 		#var warning = get_status_warning(value)
-		var percent_bar = SystemManager.get_percent_to_bar(value)
+		var percent_bar = SystemManager.get_percent_to_bar(value, 100)
 		output.append(label + ": " + percent_bar)
 	output.append("==============================")
 	

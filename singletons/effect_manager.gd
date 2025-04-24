@@ -17,5 +17,8 @@ func update_oxygen(value) -> void:
 func update_day(value) -> void:
 	SystemManager.day += value
 
+func update_food_scaling(value) -> void:
+	SystemManager.daily_scaling["food"] += value
+
 func deploy_panels_disabled(value) -> void:
 	SystemManager.apply_effect("deploy_panels_disabled", value)

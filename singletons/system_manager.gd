@@ -22,10 +22,16 @@ var day: int = 0:
 var deploy_panels_disabled: bool = false
 var is_game_over: bool = false
 
-var default_degradation_values: Dictionary = {
-	"power": -15,
-	"oxygen": -10,
+var base_depletion: Dictionary = {
+	"power": -12,
+	"oxygen": -8,
 	"food": -5
+}
+
+var daily_scaling: Dictionary = {
+	"power": 0.3,
+	"oxygen": 0.2,
+	"food": 0.25
 }
 
 var can_advance_day: bool = true
@@ -66,15 +72,15 @@ func get_resource_label(resource: String) -> String:
 			return "OXY"
 	return ""
 
-func get_percent_to_bar(value) -> String:
-	var bar_count = value / 5
-	var output = ""
-	for i in bar_count:
-		output += "█"
-	return output
+func get_percent_to_bar(current: float, max: float, width: int = 20, color: String = "green") -> String:
+	var percent = current / max
+	var filled = int(percent * width)
+	var empty = width - filled
+	return "[[color=%s]" % color + "|".repeat(filled) + " ".repeat(empty) + "[/color]] %d%%" % int(percent * 100)
 
 func _handle_day_change() -> void:
-	for prop in default_degradation_values:
-		set(prop, get(prop) + default_degradation_values[prop])
+	for prop in base_depletion:
+		set(prop, get(prop) + base_depletion[prop])
+		base_depletion[prop] += daily_scaling[prop]
 	day_updated.emit()
 	
