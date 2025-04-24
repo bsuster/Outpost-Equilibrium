@@ -18,9 +18,15 @@ var power: int = 100:
 var day: int = 0:
 	set(new_value):
 		day = new_value
-		day_updated.emit()
+		_handle_day_change()
 var deploy_panels_disabled: bool = false
 var is_game_over: bool = false
+
+var default_degradation_values: Dictionary = {
+	"power": -15,
+	"oxygen": -10,
+	"food": -5
+}
 
 var can_advance_day: bool = true
 
@@ -66,3 +72,9 @@ func get_percent_to_bar(value) -> String:
 	for i in bar_count:
 		output += "█"
 	return output
+
+func _handle_day_change() -> void:
+	for prop in default_degradation_values:
+		set(prop, get(prop) + default_degradation_values[prop])
+	day_updated.emit()
+	

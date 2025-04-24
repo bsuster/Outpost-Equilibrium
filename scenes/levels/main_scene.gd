@@ -5,6 +5,12 @@ extends Control
 @onready var terminal: Terminal = $Terminal
 @onready var background_player: AudioStreamPlayer2D = $BackgroundPlayer
 
+var day_progression_message: Array[String] = [
+	"\n\n> Day advanced. Systems report nominal.",
+	"\n\n> Another day passes in silence.",
+	"\n\n> Time moves forward, whether you're ready or not..."
+]
+
 
 func _ready() -> void:
 	SystemManager.day_updated.connect(_next_day)
@@ -26,6 +32,10 @@ func _on_background_player_finished() -> void:
 func _next_day() -> void:
 	terminal.disable_input()
 	await get_tree().create_timer(2).timeout
+	if not CommandManager.has_command_history or CommandManager.command_history[0] != "skip":
+		var msg: String = day_progression_message[randi_range(0, day_progression_message.size() - 1)]
+		terminal.print_terminal_output(msg)
+	await get_tree().create_timer(3).timeout
 	EventManager.refresh_active_events()
 	if SystemManager.is_game_over:
 		_show_game_over_screen()
@@ -41,7 +51,7 @@ func _next_day() -> void:
 	terminal.enable_input()
 #
 func _on_intro_done():
-	terminal.try_submit_input("next")
+	SystemManager.day += 1
 
 func _show_game_over_screen() -> void:
 	var power_color = "red" if SystemManager.power <= 0 else "white"
