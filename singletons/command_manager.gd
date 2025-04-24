@@ -3,8 +3,16 @@ extends Node
 var commands: Dictionary
 
 var previous_command: String = ""
+var command_history: Array[String] = []
+var current_command_index: int = 0
+var default_command_index: int = -1
+
+var has_command_history: bool:
+	get:
+		return not command_history.is_empty()
 
 func _init():
+	current_command_index = default_command_index
 	_restore_data()
 
 func _restore_data():
@@ -23,11 +31,29 @@ func _restore_data():
 func has_command(command: String) -> bool:
 	return commands.has(command)
 
+func get_previous_command() -> String:
+	if current_command_index + 1 > command_history.size() - 1:
+		return command_history.back()
+	
+	current_command_index += 1
+	return command_history[current_command_index]
+
+func get_next_command() -> String:
+	if current_command_index - 1 < 0:
+		return command_history.front()
+	
+	current_command_index -= 1
+	return command_history[current_command_index]
+
+func reset_command_cycling() -> void:
+	current_command_index = default_command_index
+
 func exec_command(command_title) -> String:
 	if not commands.has(command_title):
 		if previous_command == "exit":
 			return commands["exit"].run()
 		return ""
+	command_history.push_front(command_title)
 	var command: Command = commands[command_title]
 	
 	if command_title == "status":

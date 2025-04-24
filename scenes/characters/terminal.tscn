@@ -93,3 +93,5 @@ caret_force_displayed = true
 stream = ExtResource("3_0td1w")
 volume_db = -18.0
 pitch_scale = 0.8
+
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/HBoxContainer/TerminalInput" to="." method="_on_terminal_input_text_changed"]

@@ -11,6 +11,7 @@ signal printing_done
 var is_printing: bool = false
 var previous_command: String = ""
 var is_printer_override: bool = false
+var is_cycling_past_commands: bool = false
 
 func _ready():
 	SystemManager.game_restarted.connect(clear_console)
@@ -22,7 +23,25 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("submit_input"):
-		submit_input()
+		try_submit_input()
+	if event.is_action_pressed("cycle_up"):
+		cycle_previous_command()
+	if event.is_action_pressed("cycle_down"):
+		cycle_next_command()
+
+func cycle_previous_command() -> void:
+	if not CommandManager.has_command_history:
+		return
+	is_cycling_past_commands = true
+	terminal_input.text = CommandManager.get_previous_command()
+	is_cycling_past_commands = false
+
+func cycle_next_command() -> void:
+	if not CommandManager.has_command_history:
+		return
+	is_cycling_past_commands = true
+	terminal_input.text = CommandManager.get_next_command()
+	is_cycling_past_commands = false
 
 func disable_input() -> void:
 	terminal_input.release_focus.call_deferred()
@@ -32,8 +51,8 @@ func enable_input() -> void:
 	terminal_input.editable = true
 	terminal_input.grab_focus.call_deferred()
 
-func submit_input(force_input: String = ""):
-	if is_printing:
+func try_submit_input(force_input: String = ""):
+	if is_printing or not terminal_input.editable:
 		return
 	var command = terminal_input.text.strip_edges() if force_input == "" else force_input
 	var regex = RegEx.new()
@@ -86,3 +105,7 @@ func force_print_stop() -> void:
 
 func clear_console() -> void:
 	terminal_output.text = "Rebooting...\n\n"
+
+func _on_terminal_input_text_changed(new_text):
+	if not is_cycling_past_commands:
+		CommandManager.reset_command_cycling()

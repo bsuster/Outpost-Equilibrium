@@ -41,7 +41,7 @@ func _next_day() -> void:
 	terminal.enable_input()
 #
 func _on_intro_done():
-	terminal.submit_input("next")
+	terminal.try_submit_input("next")
 
 func _show_game_over_screen() -> void:
 	var power_color = "red" if SystemManager.power <= 0 else "white"
