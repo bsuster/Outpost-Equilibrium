@@ -66,8 +66,8 @@ func get_resource_label(resource: String) -> String:
 			return "OXY"
 	return ""
 
-func get_percent_to_bar(current: float, max: float, width: int = 20, color: String = "green") -> String:
-	var percent = current / max
+func get_percent_to_bar(current: float, max_val: float, width: int = 20, color: String = "green") -> String:
+	var percent = current / max_val
 	if percent <= 0.35:
 		color = "red"
 	elif percent <= 0.50:

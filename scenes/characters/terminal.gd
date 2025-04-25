@@ -114,6 +114,6 @@ func force_print_stop() -> void:
 func clear_console() -> void:
 	terminal_output.text = "Rebooting...\n\n"
 
-func _on_terminal_input_text_changed(new_text):
+func _on_terminal_input_text_changed(_new_text):
 	if not is_cycling_past_commands:
 		CommandManager.reset_command_cycling()

@@ -1,9 +1,10 @@
-extends Control
+extends Camera2D
 
 @export var background_songs: Array[AudioStream]
 
-@onready var terminal: Terminal = $Terminal
-@onready var background_player: AudioStreamPlayer2D = $BackgroundPlayer
+@onready var terminal: Terminal = $CanvasLayer/Terminal
+@onready var background_player: AudioStreamPlayer2D = $CanvasLayer/BackgroundPlayer
+@onready var glitch_effect: ColorRect = $CanvasLayer/GlitchEffect
 
 var day_progression_message: Array[String] = [
 	"\n\n> Day advanced. Systems report nominal.",
@@ -13,6 +14,7 @@ var day_progression_message: Array[String] = [
 
 
 func _ready() -> void:
+	glitch_effect.visible = false
 	SystemManager.day_updated.connect(_next_day)
 	background_player.play()
 
@@ -30,6 +32,7 @@ func _on_background_player_finished() -> void:
 	_play_next_song()
 
 func _next_day() -> void:
+	glitch_effect.visible = false
 	terminal.disable_input()
 	await get_tree().create_timer(1).timeout
 	if terminal.is_printing:
@@ -58,6 +61,8 @@ func _on_intro_done():
 	SystemManager.day += 1
 
 func _show_game_over_screen() -> void:
+	glitch_effect.visible = true
+	
 	var game_over_art = [
 		"\n[ !! SYSTEM FAILURE !! ]",
 		"",
