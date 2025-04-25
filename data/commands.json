@@ -17,22 +17,6 @@
 		"effects": {},
 		"condition": null,
 	},
-	"next": {
-		"description": "Advances time by one day. All systems consume resources based on base depletion rates and environmental effects.",
-		"success_text": [
-			"Day advanced. Systems report nominal.",
-			"Another day passes in silence.",
-			"Time moves forward, whether you're ready or not..."
-		],
-		"failure_text": [
-			"Time cannot progress until all critical systems are stabilized.",
-			"Warning: A system failure is imminent. Day cannot advance safely."
-		],
-		"effects": {
-			"update_day": 1
-		},
-		"condition": "can_advance_day"
-	},
 	"stabilize_air": {
 		"description": "Purges toxins and recycles breathable air to maintain colony atmosphere.",
 		"success_text": [
