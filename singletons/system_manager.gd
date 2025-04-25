@@ -3,13 +3,13 @@ extends Node
 signal day_updated
 signal game_restarted
 
-var oxygen: int = 20:
+var oxygen: int = 100:
 	set(new_value):
 		oxygen = clamp(new_value, 0, 100)
-var food: int = 20:
+var food: int = 100:
 	set(new_value):
 		food = clamp(new_value, 0, 100)
-var power: int = 20:
+var power: int = 100:
 	set(new_value):
 		power = clamp(new_value, 0, 100)
 var day: int = 0:
@@ -22,15 +22,15 @@ var is_game_over: bool:
 		return [power, oxygen, food].has(0)
 
 var base_depletion: Dictionary = {
-	"power": -12,
-	"oxygen": -8,
-	"food": -5
+	"power": -8,
+	"oxygen": -5,
+	"food": -3
 }
 
 var daily_scaling: Dictionary = {
-	"power": 0.2,
-	"oxygen": 0.15,
-	"food": 0.2
+	"power": 0.25,
+	"oxygen": 0.2,
+	"food": 0.3
 }
 
 var can_advance_day: bool = true

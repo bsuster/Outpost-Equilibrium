@@ -65,8 +65,16 @@ func try_submit_input(force_input: String = ""):
 		var command_text = "\n> " + command + "\n"
 		print_terminal_output(command_text)
 		await printing_done
+	var command_name = command_arr[0]
+	var command_obj: Command = CommandManager.get_command_by_name(command_name)
 	
-	var command_output = CommandManager.exec_command(command_arr[0])
+	var arg: String = ""
+	if command_obj and not command_obj.args.is_empty():
+		if command_arr.size() != 2:
+			return
+		arg = command_arr[1]
+	
+	var command_output = CommandManager.exec_command(command_arr[0], arg)
 	if command_output == "":
 		return
 	

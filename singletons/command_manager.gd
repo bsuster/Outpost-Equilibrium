@@ -48,7 +48,7 @@ func get_next_command() -> String:
 func reset_command_cycling() -> void:
 	current_command_index = default_command_index
 
-func exec_command(command_title) -> String:
+func exec_command(command_title: String, arg: String = "") -> String:
 	if not commands.has(command_title):
 		if previous_command == "exit":
 			return commands["exit"].run()
@@ -72,7 +72,7 @@ func exec_command(command_title) -> String:
 				return commands["exit"].run()
 		else:
 			previous_command = command_title
-		return command.run()
+		return command.run(arg)
 	previous_command = command_title
 	return command.get_failure_text()
 
@@ -92,14 +92,14 @@ func get_status_message() -> String:
 	if EventManager.active_events.is_empty():
 		output.append(" NO ACTIVE EVENTS ")
 	else:
+		output.append(" ACTIVE EVENTS:")
 		for event in EventManager.active_events:
-			output.append(" ACTIVE EVENTS:")
 			output.append("- [color=red]" + event.title + "[/color]: " + event.description)
 			if not event.effects.is_empty():
 				output.append("    Effects")
 				for effect in event.effects:
 					output.append("       %s: %s" % [event.effects[effect].description, event.effects[effect].value])
-				output.append("    Days left: %s" % [event.duration - 1])
+				output.append("    Days left: %s" % [event.duration])
 		
 	output.append("==============================")
 	
@@ -126,3 +126,8 @@ func restart_game() -> String:
 	previous_command = ""
 	SystemManager.restart_game()
 	return ""
+
+func get_command_by_name(name: String = "") -> Command:
+	if commands.has(name):
+		return commands[name]
+	return null

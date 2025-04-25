@@ -87,12 +87,100 @@
 		"title": "Colonist Born",
 		"description": "A child has been born in the colony — a rare sign of hope. However, even infants must eat.",
 		"effects": {
-			"update_food_scaling": {
-				"description": "Food Depletion",
+			"food_depletion_bonus": {
+				"description": "Increase food consumption",
 				"value": 0.5,
 			},
 		},
 		"duration": 1,
 		"is_removable": false
 	},
+	"efficient_recycling": {
+		"title": "Efficient Recycling",
+		"description": "Automated systems optimize waste conversion, reducing food usage.",
+		"effects": {
+			"food_depletion_bonus": {
+				"description": "Reduced food consumption",
+				"value": -0.2
+			}
+		},
+		"duration": 1,
+		"is_removable": false
+	},
+	"power_conduit_short": {
+		"title": "Power Conduit Short",
+		"description": "A conduit failure causes a significant power drain across systems.",
+		"effects": {
+			"power_depletion_bonus": {
+				"description": "Increased passive power drain",
+				"value": 0.5
+			}
+		},
+		"duration": 1,
+		"is_removable": false
+	},
+	"fungal_contamination": {
+		"title": "Fungal Contamination",
+		"description": "A fungal outbreak has spoiled a portion of the food reserves.",
+		"effects": {
+			"update_food": {
+				"description": "Food",
+				"value": 2
+			}
+		},
+		"duration": 3,
+		"is_removable": false
+	},
+	"thin_atmosphere_pocket": {
+		"title": "Thin Atmosphere Pocket",
+		"description": "Sensors detect a shift in atmospheric density. Oxygen use rises.",
+		"effects": {
+			"update_oxygen": {
+				"description": "Oxygen",
+				"value": 1
+			}
+		},
+		"duration": 2,
+		"is_removable": false,
+	},
+	"greenhouse_bloom": {
+		"title": "Greenhouse Bloom",
+		"description": "A burst of photosynthesis has resulted in an unexpected surplus of food.",
+		"effects": {
+			"update_food": {
+				"description": "Bonus food added daily",
+				"value": 2
+			}
+		},
+		"duration": 2,
+		"is_removable": false,
+	},
+	"geothermal_tap_discovered": {
+		"title": "Geothermal Tap Discovered",
+		"description": "A geothermal vent has been harnessed, providing steady auxiliary power.",
+		"effects": {
+			"power_bonus": {
+				"description": "Free passive power generated each day",
+				"value": 2
+			}
+		},
+		"duration": 4,
+		"is_removable": false,
+	},
+	"breakthrough_in_biotech": {
+		"title": "Breakthrough in Biotech",
+		"description": "Scientists discover new microbes that boost crop yields and oxygen efficiency.",
+		"effects": {
+			"food_depletion_bonus": {
+				"description": "Reduced food consumption",
+				"value": -0.2
+			},
+			"oxygen_depletion_bonus": {
+				"description": "Reduced oxygen consumption",
+				"value": -0.2
+			}
+		},
+		"duration": 1,
+		"is_removable": false,
+	}
 }

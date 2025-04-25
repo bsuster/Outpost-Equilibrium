@@ -3,6 +3,8 @@ extends Node
 var events: Array[Event]
 
 var active_events: Array[Event]
+var DEBUG_MODE: bool = false
+var DEBUG_EVENTS_ON: bool = false
 
 var available_events: Array[Event]:
 	get:
@@ -36,27 +38,28 @@ func refresh_active_events():
 	for event in active_events:
 		event.duration -= 1
 		if event.duration <= 0:
-			event.remove_effects()
+			if event.is_removable:
+				event.remove_effects()
 			active_events.erase(event)
+		else:
+			event.apply_effects()
 	
 	randomize()
-	while randi_range(1, 4) == 1:
+	var is_adding_event = _get_add_event(2)
+	while is_adding_event:
 		if available_events.is_empty():
 			return
 		var new_event: Event = available_events.pick_random().clone()
 		active_events.append(new_event)
 		new_event.apply_effects()
-	
-
-func get_random_event() -> Event:
-	var coin_flip = randi_range(0,1) == 1
-	
-	if coin_flip:
-		return null
-	
-	return events.pick_random()
+		is_adding_event = _get_add_event(4)
 
 func clear_active_events() -> void:
 	for event in active_events:
 		event.remove_effects()
 		active_events.erase(event)
+
+func _get_add_event(max_val: int) -> bool:
+	if DEBUG_MODE:
+		return DEBUG_EVENTS_ON
+	return randi_range(1, max_val)

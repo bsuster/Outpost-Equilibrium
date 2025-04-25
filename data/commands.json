@@ -28,7 +28,7 @@
 			],
 		"effects": {
 			"update_oxygen": 15,
-			"update_power": -10,
+			"update_power": -5,
 			"update_day": 1
 		},
 		"condition": "has_min_power_10"

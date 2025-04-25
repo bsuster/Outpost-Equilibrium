@@ -39,11 +39,8 @@ func _next_day() -> void:
 		var msg: String = day_progression_message[randi_range(0, day_progression_message.size() - 1)]
 		terminal.print_terminal_output(msg)
 		await terminal.printing_done
-	await get_tree().create_timer(1).timeout
 	EventManager.refresh_active_events()
-	if SystemManager.is_game_over:
-		_show_game_over_screen()
-		return
+	await get_tree().create_timer(1).timeout
 	if terminal.is_printing:
 		await terminal.printing_done
 	var day_string = "\nDay: %s" % [SystemManager.day]
@@ -51,6 +48,9 @@ func _next_day() -> void:
 	await terminal.printing_done
 	terminal.print_terminal_output(CommandManager.get_status_message())
 	await terminal.printing_done
+	if SystemManager.is_game_over:
+		_show_game_over_screen()
+		return
 	SystemManager.set_can_advance_day(false)
 	terminal.enable_input()
 #
@@ -58,17 +58,11 @@ func _on_intro_done():
 	SystemManager.day += 1
 
 func _show_game_over_screen() -> void:
-	var power_color = "red" if SystemManager.power <= 0 else "white"
-	var oxygen_color = "red" if SystemManager.oxygen <= 0 else "white"
-	var food_color = "red" if SystemManager.food <= 0 else "white"
 	var game_over_art = [
 		"\n[ !! SYSTEM FAILURE !! ]",
 		"",
 		"CRITICAL SYSTEMS OFFLINE",
 		"",
-		"# PWR: " + SystemManager.get_percent_to_bar(SystemManager.power, 100, 20, power_color),
-		"# OXY: " + SystemManager.get_percent_to_bar(SystemManager.oxygen, 100, 20, oxygen_color),
-		"# FOD: " + SystemManager.get_percent_to_bar(SystemManager.food, 100, 20, food_color),
 		"",
 		"> [color=red]Warning[/color]... life support failing...",
 		"> Evacuation protocol: [color=red]UNAVAILABLE[/color]",
