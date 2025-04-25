@@ -3,24 +3,23 @@ extends Node
 signal day_updated
 signal game_restarted
 
-var oxygen: int = 100:
+var oxygen: int = 20:
 	set(new_value):
 		oxygen = clamp(new_value, 0, 100)
-		_check_game_over()
-var food: int = 100:
+var food: int = 20:
 	set(new_value):
 		food = clamp(new_value, 0, 100)
-		_check_game_over()
-var power: int = 100:
+var power: int = 20:
 	set(new_value):
 		power = clamp(new_value, 0, 100)
-		_check_game_over()
 var day: int = 0:
 	set(new_value):
 		day = new_value
 		_handle_day_change()
 var deploy_panels_disabled: bool = false
-var is_game_over: bool = false
+var is_game_over: bool:
+	get:
+		return [power, oxygen, food].has(0)
 
 var base_depletion: Dictionary = {
 	"power": -12,
@@ -29,9 +28,9 @@ var base_depletion: Dictionary = {
 }
 
 var daily_scaling: Dictionary = {
-	"power": 0.3,
-	"oxygen": 0.2,
-	"food": 0.25
+	"power": 0.2,
+	"oxygen": 0.15,
+	"food": 0.2
 }
 
 var can_advance_day: bool = true
@@ -49,18 +48,13 @@ func toggle_can_advance_day():
 func set_can_advance_day(value: bool):
 	can_advance_day = value
 
-func _check_game_over():
-	if [food, oxygen, power].any(func(val): return val <= 0):
-		is_game_over = true
-
 func restart_game():
-	is_game_over = 0
-	game_restarted.emit()
-	day = 1
 	power = 85
 	oxygen = 90
 	food = 95
 	EventManager.clear_active_events()
+	game_restarted.emit()
+	day = 1
 
 func get_resource_label(resource: String) -> String:
 	match resource.to_lower():
@@ -74,6 +68,10 @@ func get_resource_label(resource: String) -> String:
 
 func get_percent_to_bar(current: float, max: float, width: int = 20, color: String = "green") -> String:
 	var percent = current / max
+	if percent <= 0.35:
+		color = "red"
+	elif percent <= 0.50:
+		color = "yellow"
 	var filled = int(percent * width)
 	var empty = width - filled
 	return "[[color=%s]" % color + "|".repeat(filled) + " ".repeat(empty) + "[/color]] %d%%" % int(percent * 100)

@@ -38,7 +38,8 @@ func _next_day() -> void:
 	if not CommandManager.has_command_history or CommandManager.command_history[0] != "skip":
 		var msg: String = day_progression_message[randi_range(0, day_progression_message.size() - 1)]
 		terminal.print_terminal_output(msg)
-	await get_tree().create_timer(3).timeout
+		await terminal.printing_done
+	await get_tree().create_timer(1).timeout
 	EventManager.refresh_active_events()
 	if SystemManager.is_game_over:
 		_show_game_over_screen()
@@ -78,7 +79,7 @@ func _show_game_over_screen() -> void:
 		"",
 		"   -- THE OUTPOST HAS BEEN LOST --",
 		"",
-		"   Type '[color=blue]restart' to begin again.[/color]\n"
+		"   Type '[color=green]restart[/color]' to begin again.\n"
 	]
 
 	for line in game_over_art:
