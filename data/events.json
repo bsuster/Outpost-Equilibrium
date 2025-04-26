@@ -159,7 +159,7 @@
 		"title": "Geothermal Tap Discovered",
 		"description": "A geothermal vent has been harnessed, providing steady auxiliary power.",
 		"effects": {
-			"power_bonus": {
+			"update_power": {
 				"description": "Free passive power generated each day",
 				"value": 2
 			}

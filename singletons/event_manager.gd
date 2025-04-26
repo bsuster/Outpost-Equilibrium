@@ -62,4 +62,4 @@ func clear_active_events() -> void:
 func _get_add_event(max_val: int) -> bool:
 	if DEBUG_MODE:
 		return DEBUG_EVENTS_ON
-	return randi_range(1, max_val)
+	return randi_range(1, max_val) == 1
