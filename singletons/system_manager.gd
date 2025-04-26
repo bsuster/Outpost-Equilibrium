@@ -58,9 +58,9 @@ func restart_game():
 		"food": 0.3
 	}
 	base_depletion = {
-		"power": -8,
-		"oxygen": -5,
-		"food": -3
+		"power": -10,
+		"oxygen": -8,
+		"food": -5
 	}
 	EventManager.clear_active_events()
 	game_restarted.emit()
