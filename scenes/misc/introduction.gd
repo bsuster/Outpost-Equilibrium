@@ -41,6 +41,7 @@ var intro_text_blocks: Array[String] = [
 >> INTERFACE [color=green]ACTIVE[/color] - COMMAND LINE MODE [color=green]ENGAGED[/color]  
 >> Use [color=green]`help`[/color] to view available commands  
 >> Use [color=green]`status`[/color] to view current system levels  
+>> Use [color=green]`skip`[/color] to move on to the next day without stabilizing  
 
 - You may issue only [color=red]one command per day[/color].  
 - Use the [color=green]UP[/color] and [color=green]DOWN[/color] arrow keys to scroll through previous commands.  

@@ -52,6 +52,16 @@ func restart_game():
 	power = 85
 	oxygen = 90
 	food = 95
+	daily_scaling = {
+		"power": 0.25,
+		"oxygen": 0.2,
+		"food": 0.3
+	}
+	base_depletion = {
+		"power": -8,
+		"oxygen": -5,
+		"food": -3
+	}
 	EventManager.clear_active_events()
 	game_restarted.emit()
 	day = 1

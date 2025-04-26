@@ -43,6 +43,8 @@ func _next_day() -> void:
 		terminal.print_terminal_output(msg)
 		await terminal.printing_done
 	EventManager.refresh_active_events()
+	if EventManager.is_updating_events:
+		await EventManager.active_events_updated
 	await get_tree().create_timer(1).timeout
 	if terminal.is_printing:
 		await terminal.printing_done
