@@ -22,9 +22,9 @@ var is_game_over: bool:
 		return [power, oxygen, food].has(0)
 
 var base_depletion: Dictionary = {
-	"power": -8,
-	"oxygen": -5,
-	"food": -3
+	"power": -10,
+	"oxygen": -8,
+	"food": -5
 }
 
 var daily_scaling: Dictionary = {
