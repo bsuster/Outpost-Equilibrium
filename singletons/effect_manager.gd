@@ -11,7 +11,7 @@ func update_power(value):
 
 func update_power_range(value):
 	randomize()
-	var val = randi_range(value[0], value[1])
+	var val = snappedf(randi_range(value[0], value[1]), 0.1)
 	SystemManager.power += val
 	return { "resource": "Power", "value": val }
 
@@ -21,7 +21,7 @@ func update_food(value):
 
 func update_food_range(value):
 	randomize()
-	var val = randi_range(value[0], value[1])
+	var val = snappedf(randi_range(value[0], value[1]), 0.1)
 	SystemManager.food += val
 	return { "resource": "Food", "value": val }
 
@@ -31,7 +31,7 @@ func update_oxygen(value):
 
 func update_oxygen_range(value: Array):
 	randomize()
-	var val = randi_range(value[0], value[1])
+	var val = snappedf(randi_range(value[0], value[1]), 0.1)
 	SystemManager.oxygen += val
 	return { "resource": "Oxygen", "value": val }
 

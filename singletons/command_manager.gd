@@ -98,7 +98,15 @@ func get_status_message() -> String:
 			if not event.effects.is_empty():
 				output.append("    Effects")
 				for effect in event.effects:
-					output.append("       %s: %s" % [event.effects[effect].description, event.effects[effect].value])
+					var is_positive = event.effects[effect].value > 0
+					var color = "green" if is_positive else "red"
+					var val_sign = "+" if is_positive else ""
+					output.append("       %s: [color=%s]%s%s[/color]" % [
+						event.effects[effect].description, 
+						color,
+						val_sign,
+						event.effects[effect].value
+						])
 				output.append("    Days left: %s" % [event.duration])
 		
 	output.append("==============================")
@@ -127,7 +135,7 @@ func restart_game() -> String:
 	SystemManager.restart_game()
 	return ""
 
-func get_command_by_name(name: String = "") -> Command:
-	if commands.has(name):
-		return commands[name]
+func get_command_by_name(command_name: String = "") -> Command:
+	if commands.has(command_name):
+		return commands[command_name]
 	return null

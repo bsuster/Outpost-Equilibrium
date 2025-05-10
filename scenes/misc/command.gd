@@ -43,12 +43,12 @@ func get_success_text(change_vals) -> String:
 	var s_text = [success_text.pick_random()]
 	for effect in change_vals:
 		var change_val = change_vals[effect]
-		var change_val_color = "green" if change_val.value > 0 else "red"
-		var change_sign = "+" if change_val.value > 0 else "-"
+		var color = "green" if change_val.value > 0 else "red"
+		var val_sign = "+" if change_val.value > 0 else ""
 		var change_val_text = "   %s: [color=%s]%s%s[/color]" % [
-			change_val_color,
 			change_val.resource,
-			change_sign,
+			color,
+			val_sign,
 			str(change_val.value)
 			]
 		s_text.append(change_val_text)
