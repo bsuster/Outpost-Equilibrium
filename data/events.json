@@ -125,7 +125,7 @@
 		"effects": {
 			"update_food": {
 				"description": "Food",
-				"value": 2
+				"value": -2
 			}
 		},
 		"duration": 3,
