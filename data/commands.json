@@ -20,14 +20,14 @@
 	"stabilize_air": {
 		"description": "Purges toxins and recycles breathable air to maintain colony atmosphere.",
 		"success_text": [
-			"Air scrubbers hum to life. Colonists breathe easier.\n[color=green][+15 Oxygen][/color]\n[color=red][-10 Power][/color]",
-			"Atmospheric systems stabilized. Breathing quality improved.\n[color=green][+15 Oxygen][/color]\n[color=red][-10 Power][/color]"
+			"Air scrubbers hum to life. Colonists breathe easier.",
+			"Atmospheric systems stabilized. Breathing quality improved."
 		],
 		"failure_text": [
 			"Scrubbers failed to initialize. Manual override required."
 			],
 		"effects": {
-			"update_oxygen": 15,
+			"update_oxygen_range": [13, 17],
 			"update_power": -5,
 			"update_day": 1
 		},
@@ -36,15 +36,15 @@
 	"cultivate_crops": {
 		"description": "Routes CO2 into hydroponic systems to grow food.",
 		"success_text": [
-			"Hydroponic trays activated. Crops begin to flourish.\n[color=green][+20 Food][/color]\n[color=red][-5 Oxygen][/color]",
-			"Greenhouse systems rerouted. Food production initiated.\n[color=green][+20 Food][/color]\n[color=red][-5 Oxygen][/color]"
+			"Hydroponic trays activated. Crops begin to flourish.",
+			"Greenhouse systems rerouted. Food production initiated."
 		],
 		"failure_text": [
 			"The crops have been infected by unkown contageon"
 		],
 		"effects": {
-			"update_food": 20,
-			"update_oxygen": -5,
+			"update_food_range": [18, 22],
+			"update_oxygen_range": [-3, -7],
 			"update_day": 1
 		},
 		"condition": "has_min_air_5"
@@ -52,14 +52,14 @@
 	"deploy_panels": {
 		"description": "Extends solar panels to generate power. Ineffective during dust storms.",
 		"success_text": [
-			"Panels deployed. Power flowing to the grid.\n[color=green][+20 Power][/color]",
-			"Solar collectors fully extended. Energy levels rising.\n[color=green][+20 Power][/color]"
+			"Panels deployed. Power flowing to the grid.",
+			"Solar collectors fully extended. Energy levels rising."
 		],
 		"failure_text": [
 			"Dust storm interference. No sunlight. Panels remain offline."
 		],
 		"effects": {
-			"update_power": 20,
+			"update_power_range": [20, 23],
 			"update_day": 1
 		},
 		"condition": "deploy_panels_enabled",

@@ -65,14 +65,14 @@ func refresh_active_events():
 		cooldown_events.append(event)
 	
 	randomize()
-	var is_adding_event = _get_add_event(2) if active_events.is_empty() else _get_add_event(4)
+	var is_adding_event = _get_add_event(2) if active_events.is_empty() else _get_add_event(5)
 	while is_adding_event:
 		if available_events.is_empty():
 			return
 		var new_event: Event = available_events.pick_random().clone()
 		active_events.append(new_event)
 		new_event.apply_effects()
-		is_adding_event = _get_add_event(4)
+		is_adding_event = _get_add_event(5)
 	is_updating_events = false
 	active_events_updated.emit()
 
