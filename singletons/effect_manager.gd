@@ -6,37 +6,37 @@ func get_callable_by_name(callable_name: String) -> Callable:
 	return Callable()
 
 func update_power(value):
-	SystemManager.power += value
+	SystemManager.power += int(value)
 	return { "resource": "Power", "value": value }
 
 func update_power_range(value):
 	randomize()
 	var val = snappedf(randi_range(value[0], value[1]), 0.1)
-	SystemManager.power += val
+	SystemManager.power += int(val)
 	return { "resource": "Power", "value": val }
 
 func update_food(value):
-	SystemManager.food += value
+	SystemManager.food += int(value)
 	return { "resource": "Food", "value": value }
 
 func update_food_range(value):
 	randomize()
 	var val = snappedf(randi_range(value[0], value[1]), 0.1)
-	SystemManager.food += val
+	SystemManager.food += int(val)
 	return { "resource": "Food", "value": val }
 
 func update_oxygen(value):
-	SystemManager.oxygen += value
+	SystemManager.oxygen += int(value)
 	return { "resource": "Oxygen", "value": value }
 
 func update_oxygen_range(value: Array):
 	randomize()
 	var val = snappedf(randi_range(value[0], value[1]), 0.1)
-	SystemManager.oxygen += val
+	SystemManager.oxygen += int(val)
 	return { "resource": "Oxygen", "value": val }
 
 func update_day(value):
-	SystemManager.day += value
+	SystemManager.day += int(value)
 	return { "resource": "Day", "value": value }
 
 func food_depletion_bonus(value):
